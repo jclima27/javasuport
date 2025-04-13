@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Java QuickRef</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <input
+      type="text"
+      id="filterInput"
+      placeholder="Filtrar por palavra-chave..."
+    />
+  </header>
+
+  <main id="grid">
+    <h2 class="section-title">📘 Básico</h2>
+    <!-- Bloco 1 -->
+    <div class="block" data-tags="Váriaveis">
+      <div class="title">Váriaveis</div>
+        <button class="copy-btn">Copiar</button>
+<pre>
+<code>
+int num = 5;
+float floatNum = 5.99f;
+char letter = 'D';
+boolean bool = true;
+String site = "teste";
+long idadeLong = 9223372036854775807L;
+double peso = 70.5;
+</code>
+</pre>
+    </div>
+
+    <div class="block wide" data-tags="tipos de dados primitivos">
+        <div class="title">Tipos de Dados Primitivos</div>
+        <div class="code-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Tipo de Dado</th>
+                <th>Tamanho</th>
+                <th>Valor Default</th>
+                <th>Range</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>byte</td>
+                <td>8 bits</td>
+                <td>0</td>
+                <td>-128 a 127</td>
+              </tr>
+              <tr>
+                <td>short</td>
+                <td>16 bits</td>
+                <td>0</td>
+                <td>-32.768 a 32.767</td>
+              </tr>
+              <tr>
+                <td>int</td>
+                <td>32 bits</td>
+                <td>0</td>
+                <td>-2³¹ a 2³¹-1</td>
+              </tr>
+              <tr>
+                <td>long</td>
+                <td>64 bits</td>
+                <td>0L</td>
+                <td>-2⁶³ a 2⁶³-1</td>
+              </tr>
+              <tr>
+                <td>float</td>
+                <td>32 bits</td>
+                <td>0.0f</td>
+                <td>±1.4E-45 a ±3.4E+38</td>
+              </tr>
+              <tr>
+                <td>double</td>
+                <td>64 bits</td>
+                <td>0.0d</td>
+                <td>±4.9E-324 a ±1.8E+308</td>
+              </tr>
+              <tr>
+                <td>char</td>
+                <td>16 bits</td>
+                <td>'\u0000'</td>
+                <td>'\u0000' a '\uffff'</td>
+              </tr>
+              <tr>
+                <td>boolean</td>
+                <td>1 bit (representado como 1 byte na prática)</td>
+                <td>false</td>
+                <td>true ou false</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    <!-- Bloco 2 -->
+    <div class="block" data-tags="Operadores Aritméticos">
+      <div class="title">Operadores Aritméticos</div>
+        <button class="copy-btn">Copiar</button>
+<pre>
+<code>
+int a = 10;
+int b = 3;
+
+int soma = a + b;  // 13
+int subtracao = a - b;  // 7
+int multiplicacao = a * b;  // 30
+int divisao = a / b;  // 3
+int restoDaDivisao = a % b; // 1 
+</code>
+</pre>
+    </div>
+
+    <!-- Bloco 3 -->
+    <div class="block" data-tags="Operadores de Atribuição">
+      <div class="title">Operadores de Atribuição</div>
+        <button class="copy-btn">Copiar</button>
+<pre>
+<code>
+int x = 5;
+x += 2; // x = x + 2
+x -= 1; // x = x - 1
+x *= 3; // x = x * 3
+x /= 2; // x = x / 2
+x %= 2; // x = x % 2
+</code>
+</pre>
+    </div>
+    
+    <!-- Bloco 4 -->
+    <div class="block" data-tags="Operadores Relacionais">
+        <div class="title">Operadores Relacionais</div>
+          <button class="copy-btn">Copiar</button>
+<pre>
+<code>
+int a = 5, b = 10;
+
+System.out.println(a == b); // false
+System.out.println(a != b); // true
+System.out.println(a > b);  // false
+System.out.println(a < b);  // true
+System.out.println(a >= b); // false
+System.out.println(a <= b); // true
+</code>
+</pre>
+      </div>
+
+    <!-- Bloco 4 -->
+    <div class="block" data-tags="Operadores Lógicos">
+        <div class="title">Operadores Lógicos</div>
+          <button class="copy-btn">Copiar</button>
+<pre>
+<code>
+boolean cond1 = true;
+boolean cond2 = false;
+
+(cond1 && cond2); // false (E lógico)
+(cond1 || cond2); // true  (OU lógico)
+(!cond1);         // false (negação)
+</code>
+</pre>
+    </div>
+
+    <!-- Bloco 6 -->
+    <div class="block" data-tags="Conversão Implicita">
+        <div class="title">Conversão Implicita</div>
+          <button class="copy-btn">Copiar</button>
+<pre>
+<code>
+//Casting Implicito
+//quando você está convertendo de um tipo 
+//menor para um tipo maior, ou seja, 
+//quando não há risco de perda de dados.
+
+// Conversão automática de int para double
+int num = 10;
+double valor = num;
+
+</code>
+</pre>
+    </div>
+
+    <!-- Bloco 6 -->
+    <div class="block" data-tags="Conversão explicita">
+        <div class="title">Conversão Explicita</div>
+          <button class="copy-btn">Copiar</button>
+<pre>
+<code>
+//Casting Explicito
+//É quando você precisa informar que
+//quer converter, porque existe 
+//risco de perder informação.
+
+// Perde a parte decimal (resultado: 10)
+double valorDecimal = 10.75;
+int valorInteiro = (int) valorDecimal;
+
+</code>
+</pre>
+    </div>
+
+    <h2 class="section-title">📘 String</h2>
+
+    <!-- Bloco 7 -->
+    <div class="block" data-tags="Concatenando Strings">
+        <div class="title">Concatenando Strings</div>
+        <button class="copy-btn">Copiar</button>
+<pre>
+<code>
+String nome = "João";
+String sobrenome = "Silva";
+String nomeCompleto = nome + " " + sobrenome; // João Silva
+
+String concat = nome.concat(" Silva"); // João Silva
+
+
+
+</code>
+</pre>
+    </div>
+
+    <!-- Bloco 8 -->
+    <div class="block" data-tags="Comparando Strings">
+        <div class="title">Comparando Strings</div>
+        <button class="copy-btn">Copiar</button>
+<pre>
+<code>
+String str1 = "Java";
+String str2 = "java";
+boolean iguais = str1.equals(str2); // false
+
+//Comparação sem diferenciar minúscula de maiuscula
+boolean iguaisIgnoreCase = str1.equalsIgnoreCase(str2); // true
+
+
+</code>
+</pre>
+    </div>
+
+    <!-- Bloco 9 -->
+    <div class="block" data-tags="string manipulação texto">
+        <div class="title">Substituindo em String</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+String frase = "Eu amo Java";
+String novaFrase = frase.replace("Java", "Python"); // Eu amo Python
+
+//remove pontos e traços
+String message = "000-123-4567 or 000.123.4567";
+String normalizedMessage = message.replaceAll("[.-]", "");
+System.out.println(normalizedMessage);
+</code>
+        </pre>
+    </div>
+
+    
+<!-- Bloco: Obtendo comprimento da String -->
+    <div class="block" data-tags="string comprimento texto">
+        <div class="title">Obtendo Comprimento da String</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+String texto = "Java";
+int comprimento = texto.length(); // 4
+</code>
+        </pre>
+    </div>
+
+<!-- Bloco: Extraindo parte da String -->
+    <div class="block" data-tags="string substring manipulação texto">
+        <div class="title">Extraindo Parte da String</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+String frase = "Eu amo programação";
+String parte = frase.substring(3, 6); // "amo"
+</code>
+        </pre>
+    </div>
+
+<!-- Bloco: Convertendo para maiúsculas ou minúsculas -->
+    <div class="block" data-tags="string maiúscula minúscula texto">
+        <div class="title">Convertendo para Maiúsculas ou Minúsculas</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+String texto = "java";
+String maiusculo = texto.toUpperCase(); // "JAVA"
+String minusculo = texto.toLowerCase(); // "java"
+</code>
+        </pre>
+    </div>
+
+<!-- Bloco: Verificando início ou fim da String -->
+    <div class="block" data-tags="string startwith endswith texto">
+        <div class="title">Verificando Início ou Fim da String</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+String frase = "Java é poderoso";
+boolean comecaComJava = frase.startsWith("Java"); // true
+boolean terminaComPoderoso = frase.endsWith("poderoso"); // true
+</code>
+        </pre>
+    </div>
+
+<!-- Bloco: Removendo espaços em branco -->
+    <div class="block" data-tags="string trim espaço texto">
+        <div class="title">Removendo Espaços em Branco</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+String frase = "  Olá, Mundo!  ";
+String limpa = frase.trim(); // "Olá, Mundo!"
+</code>
+        </pre>
+    </div>
+
+<!-- Bloco: Dividindo a String -->
+    <div class="block" data-tags="string split dividir texto">
+        <div class="title">Dividindo a String</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+String frase = "maçã,banana,laranja";
+String[] frutas = frase.split(","); // ["maçã", "banana", "laranja"]
+</code>
+
+        </pre>
+    </div>
+
+<!-- Bloco: Verificando se contém uma substring -->
+    <div class="block" data-tags="string contains substring texto">
+        <div class="title">Verificando se Contém uma Substring</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+String frase = "Eu gosto de Java";
+boolean temJava = frase.contains("Java"); // true
+</code>
+
+        </pre>
+    </div>
+
+<!-- Bloco: Substituindo em Strings -->
+    <div class="block" data-tags="string replace manipulação texto">
+        <div class="title">Verificando se a String esta vazia</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+String frase = "abcd"
+frase.isEmpty();      //false
+</code>
+
+        </pre>
+    </div>
+
+<!-- Bloco: Comparando Strings -->
+    <div class="block" data-tags="string compareTo comparação texto">
+        <div class="title">Comparando Strings</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+String str1 = "Java";
+String str2 = "JavaScript";
+int resultado = str1.compareTo(str2); // Valor < 0, pois "Java" vem antes de "JavaScript"
+</code>
+        </pre>
+    </div>
+
+    <!-- Bloco: charAt -->
+    <div class="block" data-tags="string charAt caractere índice">
+        <div class="title">Obtendo um Caractere com charAt</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+String palavra = "banana";
+char letra = palavra.charAt(2); // 'n'
+</code>
+        </pre>
+    </div>
+  
+  <!-- Bloco: indexOf -->
+    <div class="block" data-tags="string indexOf posição encontrar">
+        <div class="title">Encontrando Substring com indexOf</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+String texto = "Eu gosto de Java";
+int indice = texto.indexOf("Java"); // 12
+</code>
+        </pre>
+    </div>
+
+    <!-- Bloco: Conversao -->
+    <div class="block" data-tags="string indexOf posição encontrar">
+        <div class="title">Convertendo para String</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+int valor = 12;
+String num = String.valueOf(valor); // "12"
+</code>
+        </pre>
+    </div>
+    
+    <h2 class="section-title">📘 StringBuilder</h2>
+
+    <!-- Bloco: Criando e adicionando texto -->
+    <div class="block" data-tags="stringbuilder append criar adicionar">
+        <div class="title">Criando e Adicionando Texto</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+StringBuilder sb = new StringBuilder();
+sb.append("Olá");
+sb.append(" Mundo!");
+System.out.println(sb.toString()); // Olá Mundo!
+</code>
+        </pre>
+    </div>
+  
+  <!-- Bloco: Inserindo texto -->
+    <div class="block" data-tags="stringbuilder insert inserir">
+        <div class="title">Inserindo Texto</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+StringBuilder sb = new StringBuilder("Java é legal");
+sb.insert(5, "muito ");
+System.out.println(sb.toString()); // Java muito é legal
+</code>
+
+        </pre>
+    </div>
+  
+  <!-- Bloco: Substituindo texto -->
+    <div class="block" data-tags="stringbuilder replace substituir">
+        <div class="title">Substituindo Texto</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+StringBuilder sb = new StringBuilder("Olá Mundo");
+sb.replace(4, 9, "Java");
+System.out.println(sb.toString()); // Olá Java
+</code>
+    
+        </pre>
+    </div>
+  
+  <!-- Bloco: Deletando texto -->
+    <div class="block" data-tags="stringbuilder delete deletar remover">
+        <div class="title">Removendo Parte do Texto</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+StringBuilder sb = new StringBuilder("Remover isso");
+sb.delete(8, 13);
+System.out.println(sb.toString()); // Remover
+</code>
+        </pre>
+    </div>
+  
+  <!-- Bloco: Revertendo texto -->
+    <div class="block" data-tags="stringbuilder reverse inverter">
+        <div class="title">Invertendo Texto</div>
+        <button class="copy-btn">Copiar</button>
+        <pre>
+<code>
+StringBuilder sb = new StringBuilder("abc");
+sb.reverse();
+System.out.println(sb.toString()); // cba
+</code>
+        </pre>
+    </div>
+  
+  </main>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
