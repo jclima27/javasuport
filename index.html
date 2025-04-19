@@ -21,7 +21,7 @@
     <div class="block" data-tags="Váriaveis">
       <div class="title">Váriaveis</div>
         <button class="copy-btn">Copiar</button>
-<pre>
+      <pre>
 <code>
 int num = 5;
 float floatNum = 5.99f;
@@ -31,7 +31,7 @@ String site = "teste";
 long idadeLong = 9223372036854775807L;
 double peso = 70.5;
 </code>
-</pre>
+      </pre>
     </div>
 
     <div class="block wide" data-tags="tipos de dados primitivos">
@@ -481,7 +481,2432 @@ System.out.println(sb.toString()); // cba
 </code>
         </pre>
     </div>
+    
+    <h2 class="section-title">📘 Integer</h2>
+
+    <!-- Bloco: Convertendo String para Integer -->
+    <div class="block" data-tags="integer parseint converter string inteiro">
+      <div class="title">Convertendo String para Integer</div>
+      <button class="copy-btn">Copiar</button>
+      <pre>
+<code>
+String valor = "123";
+int numero = Integer.parseInt(valor);
+System.out.println(numero); // 123
+</code>
+      </pre>
+    </div>
+
+    <!-- Bloco: Convertendo Integer para String -->
+    <div class="block" data-tags="integer tostring converter inteiro string">
+      <div class="title">Convertendo Integer para String</div>
+      <button class="copy-btn">Copiar</button>
+      <pre>
+<code>
+int numero = 456;
+String texto = Integer.toString(numero);
+System.out.println(texto); // "456"
+</code>
+      </pre>
+    </div>
+
+<!-- Bloco: Comparando inteiros -->
+    <div class="block" data-tags="integer compare comparar equals">
+      <div class="title">Comparando Inteiros</div>
+      <button class="copy-btn">Copiar</button>
+      <pre>
+<code>
+Integer a = 10;
+Integer b = 20;
+
+System.out.println(a.equals(b)); // false
+
+// 0 se a for igual a b
+// -1 se a for menor que b
+// 1 se a for maior que b
+
+System.out.println(Integer.compare(a, b)); // -1
+</code>
+      </pre>
+    </div>
+
+    <!-- Bloco: Convertendo para binário, octal e hexadecimal -->
+    <div class="block" data-tags="integer binário octal hexadecimal tobinarystring">
+      <div class="title">Binário, Octal e Hexadecimal</div>
+      <button class="copy-btn">Copiar</button>
+      <pre>
+<code>
+int numero = 42;
+
+System.out.println(Integer.toBinaryString(numero)); // 101010
+System.out.println(Integer.toOctalString(numero));  // 52
+System.out.println(Integer.toHexString(numero));    // 2a
+</code>
+      </pre>
+    </div>
+
+    <!-- Bloco: Valor máximo e mínimo -->
+    <div class="block" data-tags="integer max min limite valor máximo mínimo">
+      <div class="title">Valor Máximo e Mínimo</div>
+      <button class="copy-btn">Copiar</button>
+      <pre>
+<code>
+System.out.println(Integer.MAX_VALUE); // 2147483647
+System.out.println(Integer.MIN_VALUE); // -2147483648
+
+
+
+</code>
+      </pre>
+    </div>
+
+    <h2 class="section-title">📘 Double</h2>
+
+<!-- Bloco 1 - Criação e métodos básicos -->
+    <div class="block" data-tags="double wrapper parsevalue valor toString isNaN isInfinite">
+      <div class="title">Double - Métodos e Operações</div>
+      <button class="copy-btn">Copiar</button>
+      <pre>
+<code>
+// Criando objetos Double
+Double d1 = 10.5;
+Double d2 = Double.valueOf("20.5");
+
+// Comparações
+// 0 se a for igual a b
+// -1 se a for menor que b
+// 1 se a for maior que b
+
+System.out.println(Double.compare(d1, d2)); // -1
+
+// Verificações
+System.out.println(Double.isNaN(d1));      // false
+System.out.println(Double.isInfinite(d1)); // false
+
+// Conversões
+double valor = d1.doubleValue();         // 10.5
+String texto = d1.toString();            // "10.5"
+Double d3 = Double.parseDouble("30.25"); // 30.25
+</code>
+      </pre>
+    </div>
+
+<!-- Bloco 2 - Constantes e limites -->
+    <div class="block" data-tags="double constante valor maximo minimo positivo infinito negativo">
+      <div class="title">Double - Constantes</div>
+      <button class="copy-btn">Copiar</button>
+      <pre>
+<code>
+System.out.println(Double.MAX_VALUE);  // Maior valor positivo
+System.out.println(Double.MIN_VALUE);  // Menor valor positivo
+
+System.out.println(Double.POSITIVE_INFINITY); // Infinito positivo
+System.out.println(Double.NEGATIVE_INFINITY); // Infinito negativo
+System.out.println(Double.NaN);              // Not-a-Number
+</code>
+    </pre>
+    </div>
+
+    <h2 class="section-title">📘 BigDecimal</h2>
+
+    <div class="block" data-tags="bigdecimal soma add">
+      <div class="title">BigDecimal - Operações</div>
+      <pre>
+<code>
+Soma  
+BigDecimal a = new BigDecimal("10.50");
+BigDecimal b = new BigDecimal("5.25");
+BigDecimal resultado = a.add(b); // 15.75
+
+// Subtração
+BigDecimal a = new BigDecimal("10.50");
+BigDecimal b = new BigDecimal("5.25");
+BigDecimal resultado = a.subtract(b); // 5.25
+
+//Multiplicação
+BigDecimal preco = new BigDecimal("2.50");
+BigDecimal quantidade = new BigDecimal("4");
+BigDecimal total = preco.multiply(quantidade); // 10.00
+
+//Divisão
+<strong>Sempre defina o modo de arredondamento ao dividir.</strong>
+import java.math.RoundingMode;
+BigDecimal total = new BigDecimal("10");
+BigDecimal partes = new BigDecimal("3");
+BigDecimal resultado = total.divide(partes, 2, RoundingMode.HALF_UP); // 3.33
+</code>
+
+
+      </pre>
+    </div>
+
+    <div class="block" data-tags="bigdecimal comparar compareTo">
+      <div class="title">Compara dois BigDecimal</div>
+      <pre>
+<code>
+BigDecimal a = new BigDecimal("10.00");
+BigDecimal b = new BigDecimal("10");
+
+// 0 se a for igual a b
+// -1 se a for menor que b
+// 1 se a for maior que b
+if (a.compareTo(b) == 0) {
+  System.out.println("São iguais");
+}
+
+</code>
+      </pre>
+      <div class="title">Retorna o maior valor</div>
+      <pre>
+<code>
+BigDecimal a = new BigDecimal("10");
+BigDecimal b = new BigDecimal("20");
+BigDecimal maior = a.max(b); // 20  
+</code>
+      </pre>
+      <div class="title">Define casas decimais com arredondamento</div>
+      <pre>
+<code>
+BigDecimal valor = new BigDecimal("3.14159");
+BigDecimal arredondado = valor.setScale(2, RoundingMode.HALF_UP); // 3.14  
+</code>
+      </pre>
+    </div>
+
+    <div class="block" data-tags="bigdecimal zeros stripTrailingZeros">
+      <div class="title">Remove zeros desnecessários</div>
+      <pre>
+<code>
+BigDecimal valor = new BigDecimal("10.000");
+valor = valor.stripTrailingZeros(); // 1E+1
+</code>
+      </pre>
+      <div class="title">Exibe o número em formato normal</div>
+      <pre>
+<code>
+BigDecimal valor = new BigDecimal("1.00E+2");
+valor.toPlainString(); // "100"
+</code>
+      </pre>
+      <div class="title">Retorna o resto da divisão</div>
+      <pre>
+<code>
+BigDecimal a = new BigDecimal("10");
+BigDecimal b = new BigDecimal("3");
+BigDecimal resto = a.remainder(b); // 1
+</code>
+      </pre>
+      <div class="title">Retorna o valor absoluto</div>
+      <pre>
+<code>
+BigDecimal negativo = new BigDecimal("-25.5");
+BigDecimal absoluto = negativo.abs(); // 25.5
+</code>
+      </pre>
+    </div>
+
+    <div class="block" data-tags="bigdecimal zeros stripTrailingZeros">
+      <div class="title">Retorna o menor valor</div>
+      <pre>
+<code>
+BigDecimal a = new BigDecimal("10");
+BigDecimal b = new BigDecimal("20");
+BigDecimal menor = a.min(b); // 10
+</code>
+      </pre>
+      <div class="title">Converte para tipos primitivos</div>
+      <pre>
+<code>
+BigDecimal valor = new BigDecimal("123.45");
+double d = valor.doubleValue();
+int i = valor.intValue(); // 123
+Long l = valor.longValue();
+</code>
+      </pre>
+    </div>
+
+    <div class="block" data-tags="bigdecimal zeros stripTrailingZeros">
+      <div class="title">Move a vírgula n casas pra esquerda</div>
+      <pre>
+<code>
+BigDecimal valor = new BigDecimal("12345");
+valor = valor.movePointLeft(2); // 123.45  
+</code>
+      </pre>
+    </div>
+
+    <div class="block" data-tags="bigdecimal zeros stripTrailingZeros">
+      <div class="title">Move a vírgula n casas pra direita</div>
+      <pre>
+<code>
+BigDecimal valor = new BigDecimal("123.45");
+valor = valor.movePointRight(2); // 12345    
+</code>
+      </pre>
+    </div>
+
+    <h2 class="section-title">Datas com java.time (Java 8+)</h2>
+
+    <div class="block" data-tags="java.time">
+      <div class="title">Trabalhando com datas - LocalDate</div>
+      <pre>
+<code>
+<strong>Retorna a data atual sem hora.</strong>
+LocalDate.now() //2025-04-17
+
+<strong>Converte uma string padrão ISO para uma data.</strong>
+LocalDate.parse("2025-04-13") //2025-04-13
+
+<strong>Cria uma data com ano, mês e dia.</strong>
+LocalDate.of(2025, 4, 13) //2025-04-13
+
+<strong>Formata uma data com padrão personalizado.</strong>
+LocalDate
+  .format(
+    DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+
+<strong>Converte uma string para LocalDate 
+  com um padrão personalizado.</strong>
+LocalDate
+  .parse(
+    "13/04/2025", 
+    DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+
+</code>
+      </pre>
+    </div>
+
+    <div class="block" data-tags="java.time">
+      <div class="title">Trabalhando com datas - LocalDate</div>
+      <pre>
+<code>
+LocalDate hoje = LocalDate.now(); // data atual
+<strong>Soma 7 dias à data.</strong>
+LocalDate daquiASeteDias = hoje.plusDays(7);
+
+<strong>Subtrai 7 dias à data.</strong>
+LocalDate SeteDiasAtras = hoje.minusDays(7);  
+
+<strong>Adiciona 1 mês à data.</strong>
+LocalDate daquiUmMes = hoje.plusMonths(1);
+
+<strong>Subtrai 1 mês da data atual</strong>
+LocalDate haUmMesAtras = hoje.minusMonths(1);
+</code>
+      </pre>
+    </div>
+    
+    <div class="block" data-tags="java.time">
+      <div class="title">Trabalhando com datas - LocalDate</div>
+      <pre>
+<code>
+// data atual  
+LocalDate hoje = LocalDate.now();  
+<strong>Adiciona 1 semana à data atual</strong>
+LocalDate daquiUmaSemana = hoje.plusWeeks(1);
+
+<strong>Subtrai 1 semana da data atual</strong>
+LocalDate umaSemanaAtras = hoje.minusWeeks(1);
+
+<strong>Adiciona 1 ano à data atual</strong>
+LocalDate daqui1Ano = hoje.plusYears(1);  
+</code>
+      </pre>
+    </div>
+
+    <div class="block" data-tags="java.time">
+      <div class="title">Trabalhando com datas - LocalDate</div>
+      <pre>
+<code>
+<strong>Adiciona 1 ano à data atual</strong>
+LocalDate ha1AnoAtras = hoje.minusYears(1);
+
+<strong>Altera o dia de uma data</strong>
+LocalDate setDia = hoje.withDayOfMonth(1);
+
+<strong>Altera o mês de uma data</strong>
+LocalDate setaMes = hoje.withMonth(1);
+
+<strong>Altera o ano de uma data</strong>
+LocalDate setAno = hoje.withYear(1);
+
+<strong>Altera uma data de acordo com o dia do ano</strong>
+LocalDate setDiaAno = hoje.withDayOfYear(90);
+</code>
+      </pre>
+    </div>
+
+    <div class="block" data-tags="java.time">
+      <div class="title">Trabalhando com datas - LocalDate</div>
+      <pre>
+<code>
+<strong>Converte LocalDate para LocalDatetime e 
+  adiciona o minuto e segundo como 0</strong>
+
+  // 2025-04-13T00:00
+LocalDateTime dataHora = data.atStartOfDay();
+
+<strong>Setar uma hora especifica em um LocalDate</strong>
+// 15:30 (3:30 da tarde)
+LocalDateTime dataHora = data.atTime(15, 30);
+
+<strong>Jeitos de comparar datas com LocalDate</strong>
+LocalDate data1 = LocalDate.of(2025, 4, 13);
+LocalDate data2 = LocalDate.of(2025, 4, 10);
+
+//Retorna 0 se valor1 é igual a valor2
+//Retorna > 0 se valor1 é maior que valor2
+//Retorna < 0 se valor1 é menor que valor2
+int resultado = data1.compareTo(data2);  
+</code>
+       </pre>
+    </div>
+
+    <div class="block" data-tags="java.time">
+      <div class="title">Trabalhando com datas - LocalDate</div>
+      <pre>
+<code>
+<strong>Retorna todas as datas entre as informadas</strong>
+LocalDate start = LocalDate.of(2025, 4, 1);
+LocalDate end = LocalDate.of(2025, 4, 5);
+
+start
+  .datesUntil(end)
+  .forEach(System.out::println);
+
+<strong>Verificar se uma data vem após a outra</strong>
+LocalDate hoje = LocalDate.now();
+LocalDate ontem = hoje.minusDays(1);
+
+hoje.isAfter(ontem); // true
+ontem.isAfter(hoje); // false
+
+<strong>Verificar se uma data vem antes da outra</strong>
+LocalDate hoje = LocalDate.now();
+LocalDate ontem = hoje.minusDays(1);
+
+hoje.isBefore(ontem); // false
+ontem.isBefore(hoje); // true
+
+<strong>Verificar se uma data é igual a outra</strong>
+hoje.isEqual(hoje); //true
+
+</code>
+       </pre>
+    </div>
+
+    <div class="block" data-tags="java.time">
+      <div class="title">Período entre datas</div>
+      <pre>
+<code>
+LocalDate inicio = LocalDate.of(2024, 1, 1);
+LocalDate fim = LocalDate.of(2025, 4, 13);
+
+Period periodo = Period.between(inicio, fim);
+System.out.println(periodo.getYears());   // 1
+System.out.println(periodo.getMonths());  // 3
+System.out.println(periodo.getDays());    // 12
+</code>
+      </pre>
+    </div>
+
+    <div class="block" data-tags="java.time">
+      <div class="title">Duração</div>
+      <pre>
+<code>
+LocalDateTime inicio = LocalDateTime.of(2024, 4, 12, 14, 0);
+LocalDateTime fim = LocalDateTime.of(2024, 4, 13, 18, 30);
   
+Duration duracao = Duration.between(inicio, fim);
+System.out.println(duracao.toHours());   // 28
+System.out.println(duracao.toMinutes()); // 1710
+System.out.println(duracao.getSeconds());// 102600
+</code>
+      </pre>
+    </div>
+
+    <div class="block" data-tags="java.time">
+      <div class="title">Período entre datas</div>
+      <pre>
+<code>
+LocalDate inicio = LocalDate.of(2023, 10, 1);
+LocalDate fim = LocalDate.of(2025, 4, 13);
+
+long dias = ChronoUnit.DAYS.between(inicio, fim);
+long meses = ChronoUnit.MONTHS.between(inicio, fim);
+long anos = ChronoUnit.YEARS.between(inicio, fim);
+
+System.out.println("Dias: " + dias);
+System.out.println("Meses: " + meses);
+System.out.println("Anos: " + anos);
+</code>
+      </pre>
+    </div>
+
+    <div class="block" data-tags="java.time">
+      <div class="title">Trabalhando com fuso horário</div>
+      <pre>
+<code>
+<strong>Use ZonedDateTime se quiser manter a noção 
+de fuso com região (ex: "America/Sao_Paulo").</strong>  
+
+ZonedDateTime agoraSP = ZonedDateTime
+  .now(ZoneId.of("America/Sao_Paulo"));
+
+<strong>Use OffsetDateTime se quiser apenas 
+o deslocamento (ex: "-03:00").</strong>
+
+OffsetDateTime agoraOffset = OffsetDateTime
+  .now(ZoneOffset.of("-03:00"));
+
+<strong>Instant representa um ponto no tempo 
+UTC (sem fuso). Ideal para salvar 
+em banco de dados  
+</strong>
+Instant agora = Instant.now();
+
+// Converter para exibição no fuso do usuário
+ZonedDateTime dataLocal = agora
+  .atZone(ZoneId.of("America/Sao_Paulo"));
+
+</code>
+      </pre>
+    </div>
+    
+    <div class="block" data-tags="java.time">
+      <div class="title">ZonedDateTime - Conversão para outras classes</div>
+      <pre>
+<code>
+ZonedDateTime agora = ZonedDateTime
+  .now(ZoneId.of("America/Sao_Paulo"));  
+
+// Para salvar em banco como UTC
+Instant instant = agora.toInstant();
+
+// Só a data
+LocalDate local = agora.toLocalDate();
+
+// Só a hora
+LocalTime hora = agora.toLocalTime();
+
+ZoneOffset offset = agora.getOffset();
+</code>
+      </pre>
+    </div>
+
+    <div class="block" data-tags="java.time">
+      <div class="title">OffsetDateTime - Conversão para outras classes</div>
+      <pre>
+<code>
+OffsetDateTime agora = OffsetDateTime.now();  
+
+// De ZonedDateTime para OffsetDateTime
+ZonedDateTime zdt = ZonedDateTime
+  .now(ZoneId.of("America/Sao_Paulo"));
+
+  OffsetDateTime odt = zdt.toOffsetDateTime();
+
+// De LocalDateTime com offset
+LocalDateTime ldt = LocalDateTime.now();
+
+OffsetDateTime odt2 = ldt
+  .atOffset(ZoneOffset.of("-03:00"));
+</code>
+      </pre>
+    </div>
+      
+    <h2 class="section-title">📘 Arrays</h2>  
+
+    <div class="block wide" data-tags="tipos de dados primitivos">
+      <div class="title">Pilhas, Filas e Collections</div>
+      <div class="code-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Interface Base</th>
+              <th>Vantagens</th>
+              <th>Desvantagens</th>
+              <th>Quando Usar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>List</td>
+              <td>ArrayList</td>
+              <td>Ordem de inserção, acesso por índice, permite duplicados</td>
+              <td>Rápido para leitura</td>
+              <td>Lento para inserções/remoções no meio</td>
+            </tr>
+            <tr>
+              <td>List</td>
+              <td>LinkedList</td>
+              <td>Lista duplamente ligada</td>
+              <td>Rápido para inserções/remoções</td>
+              <td>Mais lenta para acesso aleatório</td>
+            </tr>
+        
+            <!-- STACK -->
+            <tr>
+              <td>Stack</td>
+              <td>Stack</td>
+              <td>Pilha (LIFO)</td>
+              <td>Ideal para algoritmos recursivos</td>
+              <td>Baseada em vetor, performance pode variar</td>
+            </tr>
+            <tr>
+              <td>Stack</td>
+              <td>Deque como pilha (ArrayDeque)</td>
+              <td>Melhor alternativa moderna</td>
+              <td>Mais rápido que Stack</td>
+              <td>Sem sincronização</td>
+            </tr>
+        
+            <!-- QUEUE -->
+            <tr>
+              <td>Queue</td>
+              <td>LinkedList</td>
+              <td>Fila (FIFO), permite nulo</td>
+              <td>Simples e versátil</td>
+              <td>Não especializada</td>
+            </tr>
+            <tr>
+              <td>Queue</td>
+              <td>ArrayDeque</td>
+              <td>Fila sem sincronização</td>
+              <td>Alta performance</td>
+              <td>Não permite elementos nulos</td>
+            </tr>
+            <tr>
+              <td>Queue</td>
+              <td>PriorityQueue</td>
+              <td>Ordena por prioridade</td>
+              <td>Ótimo para algoritmos</td>
+              <td>Sem ordem previsível de inserção</td>
+            </tr>
+            <tr>
+              <td>Queue</td>
+              <td>ConcurrentLinkedQueue</td>
+              <td>Fila não bloqueante (concorrente)</td>
+              <td>Thread-safe</td>
+              <td>Uso avançado</td>
+            </tr>
+        
+            <!-- SET -->
+            <tr>
+              <td>Set</td>
+              <td>HashSet</td>
+              <td>Sem ordem, sem duplicados</td>
+              <td>Alta performance</td>
+              <td>Ordem imprevisível</td>
+            </tr>
+            <tr>
+              <td>Set</td>
+              <td>LinkedHashSet</td>
+              <td>Ordem de inserção, sem duplicados</td>
+              <td>Previsibilidade</td>
+              <td>Mais lento que HashSet</td>
+            </tr>
+            <tr>
+              <td>Set</td>
+              <td>TreeSet</td>
+              <td>Ordenado, sem duplicados</td>
+              <td>Ordenação natural ou personalizada</td>
+              <td>Mais lento</td>
+            </tr>
+            <tr>
+              <td>Set</td>
+              <td>EnumSet</td>
+              <td>Especializado para enums</td>
+              <td>Leve e eficiente</td>
+              <td>Somente enums</td>
+            </tr>
+        
+            <!-- MAP -->
+            <tr>
+              <td>Map</td>
+              <td>HashMap</td>
+              <td>Chave-valor, sem ordem</td>
+              <td>Alta performance</td>
+              <td>Sem ordem previsível</td>
+            </tr>
+            <tr>
+              <td>Map</td>
+              <td>LinkedHashMap</td>
+              <td>Chave-valor, ordem de inserção</td>
+              <td>Boa previsibilidade</td>
+              <td>Mais lento</td>
+            </tr>
+            <tr>
+              <td>Map</td>
+              <td>TreeMap</td>
+              <td>Chave-valor ordenado</td>
+              <td>Ordenação por chave</td>
+              <td>Mais pesado</td>
+            </tr>
+            <tr>
+              <td>Map</td>
+              <td>EnumMap</td>
+              <td>Chave do tipo enum</td>
+              <td>Leve e rápido</td>
+              <td>Somente enums</td>
+            </tr>
+            <tr>
+              <td>Map</td>
+              <td>ConcurrentHashMap</td>
+              <td>Thread-safe</td>
+              <td>Concorrência sem bloqueio</td>
+              <td>Uso mais complexo</td>
+            </tr>
+        
+            <!-- OUTROS -->
+            <tr>
+              <td>Outros</td>
+              <td>Collections.synchronizedList</td>
+              <td>Lista sincronizada</td>
+              <td>Thread-safe</td>
+              <td>Mais lenta</td>
+            </tr>
+            <tr>
+              <td>Outros</td>
+              <td>Collections.unmodifiableList</td>
+              <td>Lista imutável</td>
+              <td>Segurança em APIs públicas</td>
+              <td>Não pode ser alterada</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>  
+
+    <div class="block" data-tags="java.time">
+      <div class="title">ArrayList</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- Acesso rápido por índice
+- Boa performance para leitura sequencial
+- Permite duplicatas e elementos null
+
+<strong>Desvantagens</strong>
+- Inserção/remoção lenta no início ou meio da lista
+- Redimensionamento pode ser custoso
+- Não é thread-safe
+- Capacidade predefinida pode causar desperdício
+
+ArrayList<String> nomes = new ArrayList<>();
+
+<strong>Adicionando elementos</strong>
+nomes.add("Ana");
+nomes.add("Carlos");
+// Inserindo "Laranja" na posição 2
+nomes.add(2, "Laranja");
+
+<strong>Outra forma de inicializar</strong>
+List<String> lista = new ArrayList<>(
+  List.of("Maçã", "Banana", "Laranja"));
+
+
+<strong>Acessando por índice</strong>
+System.out.println(nomes.get(1)); // Carlos
+
+<strong>Retorna o índice</strong>
+// 1, se não existir retorna -1
+System.out.println(lista.indexOf("Carlos"));
+
+<strong>Retorna o índice da última 
+ocorrência</strong>
+System.out.println(lista.lastIndexOf("A"));
+
+<strong>Tamanho da lista</strong>
+System.out.println(nomes.size()); // 3
+
+<strong>Remover por índice ou valor</strong>
+nomes.remove(0); // Remove "Ana" (índice 0)
+nomes.remove("Carlos");
+
+<strong>Substituindo o elemento no índice 1</strong>
+nomes.set(1, "Julio");
+
+<strong>Retorna uma sublista da lista original</strong>
+List<String> sublista = lista.subList(2, 3);
+System.out.println(sublista); // [Carlos, Laranja]
+
+<strong>Verificar se contém um elemento</strong>
+if (nomes.contains("Ana")) {
+    System.out.println("Ana está na lista.");
+}
+
+<strong>Iterar</strong>
+for (String nome : nomes) {
+    System.out.println(nome);
+}
+
+<strong>Limpa a lista</strong>
+nomes.clear();
+
+<strong>Verificar se a lista esta vazia</strong>
+
+System.out.println(nomes.isEmpty()); //true
+</code>
+      </pre>
+    </div>
+
+    <div class="block" data-tags="java.time">
+      <div class="title">LinkedList</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- Inserções e remoções eficientes
+- Implementa várias interfaces List, Deque (fila dupla), e Queue
+- Permite elementos duplicados e nulos
+
+<strong>Desvantagens</strong>
+- Acesso aleatório lento 
+- Maior consumo de memória
+- Em operações que iteram muitos elementos sequencialmente, 
+ArrayList tende a ser mais rápido por usar um array contínuo
+- Não é thread-safe
+
+LinkedList<String> nomes = new LinkedList<>();
+
+<strong>Adicionando elementos</strong>
+nomes.add("Ana");
+nomes.add("Carlos");
+nomes.addFirst("João"); // Adiciona no início da lista
+nomes.addLast("Maria"); // Adiciona no final da lista
+
+<strong>Outra forma de inicializar</strong>
+List<String> lista = new LinkedList<>(
+  List.of("Maçã", "Banana", "Laranja"));
+
+<strong>Cria uma sublista dos elementos de 
+índice 1 até 3 (não inclui o 4)</strong>
+
+List<String> sublista = nomes.subList(1, 4);
+System.out.println(sublista); // [Carlos, João, Maria]  
+
+<strong>Acessando por índice</strong>
+System.out.println(nomes.get(1)); // Carlos
+
+<strong>Remover elementos</strong>
+nomes.remove(0); // Remove "João" (índice 0)
+nomes.removeFirst(); // Remove o primeiro elemento
+nomes.removeLast(); // Remove o último elemento
+
+<strong>Substituindo o elemento no índice 1</strong>
+nomes.set(1, "Julio");
+
+<strong>Verificar se contém um elemento</strong>
+if (nomes.contains("Carlos")) {
+    System.out.println("Carlos está na lista.");
+}
+
+<strong>Iterar</strong>
+for (String nome : nomes) {
+    System.out.println(nome);
+}
+
+<strong>Limpa a lista</strong>
+nomes.clear();
+
+<strong>Verificar se a lista está vazia</strong>
+System.out.println(nomes.isEmpty()); //true
+
+<strong>Adicionar um elemento na frente ou no final</strong>
+nomes.addFirst("Novo Primeiro");
+nomes.addLast("Novo Último");
+
+<strong>Retornar o primeiro e último elemento</strong>
+System.out.println("Primeiro: " + nomes.getFirst());
+System.out.println("Último: " + nomes.getLast());
+</code>
+      </pre>
+    </div>
+
+    <div class="block" data-tags="java.time">
+      <div class="title">Stack</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- Herdando de Vector, todos os métodos públicos são sincronizados. 
+Pode ser útil em ambientes multithreaded simples.
+- Inclui métodos de busca
+
+<strong>Desvantagens</strong>  
+- Internamente usa Vector, que é considerado antiquado e 
+menos eficiente que estruturas mais modernas, como ArrayDeque.
+- Por causa da sincronização e da herança de Vector, o Stack 
+tem desempenho inferior ao ArrayDeque em contextos de thread única.
+- Usado apenas como pilha; não funciona bem como fila ou deque
+
+Stack<String> pilha = new Stack<>();
+
+<strong>Empilhando elementos</strong>
+pilha.push("Ana");
+pilha.push("Carlos");
+pilha.push("João");
+
+<strong>Buscar a posição de um elemento</strong>
+System.out.println(pilha.search("Carlos")); // 1 
+
+<strong>Verificando o elemento no topo da pilha</strong>
+System.out.println(pilha.peek()); // João
+
+<strong>Remover o elemento do topo da pilha</strong>
+System.out.println(pilha.pop()); // João (removido)
+System.out.println(pilha.pop()); // Carlos (removido)
+
+<strong>Verificando se a pilha está vazia</strong>
+System.out.println(pilha.isEmpty()); // false
+
+<strong>Verificando o tamanho da pilha</strong>
+System.out.println(pilha.size()); // 1
+
+<strong>Empilhar mais um elemento</strong>
+pilha.push("Maria");
+
+<strong>Verificando se a pilha contém um elemento</strong>
+System.out.println(pilha.contains("Ana")); // false
+
+<strong>Iterando sobre os elementos da pilha</strong>
+for (String nome : pilha) {
+    System.out.println(nome);
+}
+
+// Saída:
+// Ana
+// Maria
+
+<strong>Limpar a pilha</strong>
+pilha.clear();
+System.out.println(pilha.isEmpty()); // true
+</code>
+      </pre>
+    </div>
+
+    <div class="block" data-tags="java.time">
+      <div class="title">ArrayDeque</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- Alta performance de Inserções e remoções nas extremidades
+- Mais rápido que Stack e LinkedList
+- Pode ser usado como fila e pilha
+
+<strong>Desvantagens</strong>
+- Não permite elementos nulos
+- Não é thread-safe
+- Não tem acesso aleatório por índice
+
+Deque<String> deque = new ArrayDeque<>();
+
+<strong>Adicionando elementos</strong>
+deque.add("Ana");
+deque.add("Carlos");
+deque.add("João");
+
+<strong>Inserir no início da deque</strong>
+deque.addFirst("Maria");
+
+<strong>Inserir no final da deque</strong>
+deque.addLast("João");
+
+<strong>Remover elementos</strong>
+System.out.println(deque.removeFirst()); // Maria
+System.out.println(deque.removeLast());  // João
+
+<strong>Acessando elementos</strong>
+System.out.println(deque.getFirst()); // Ana
+System.out.println(deque.getLast());  // João
+
+<strong>Verificando se a deque contém um elemento</strong>
+System.out.println(deque.contains("Carlos")); // true
+System.out.println(deque.contains("Ana"));    // true
+
+<strong>Remover um elemento específico</strong>
+deque.remove("Carlos");
+
+<strong>Verificando o tamanho da deque</strong>
+System.out.println(deque.size()); // 2
+
+<strong>Iterando sobre os elementos</strong>
+for (String nome : deque) {
+    System.out.println(nome);
+}
+// Saída:
+// Ana
+// João
+
+<strong>Verificando se a deque está vazia</strong>
+System.out.println(deque.isEmpty()); // false
+
+<strong>Limpar a deque</strong>
+deque.clear();
+System.out.println(deque.isEmpty()); // true
+
+<strong>Outros métodos</strong>
+
+// Acessar o primeiro e último elementos sem removê-los
+System.out.println(deque.peekFirst()); // Retorna o primeiro elemento, ou null
+System.out.println(deque.peekLast());  // Retorna o último elemento, ou null
+
+// Remover e retornar o primeiro ou último elemento
+System.out.println(deque.pollFirst()); // Retorna e remove o primeiro elemento
+System.out.println(deque.pollLast());  // Retorna e remove o último elemento
+
+// Converter a deque para um array
+Object[] array = deque.toArray();
+String[] stringArray = deque.toArray(new String[0]);
+
+</code>
+      </pre>
+    </div>
+    
+    <div class="block" data-tags="java.util">
+      <div class="title">Queue com LinkedList</div>
+      <pre>
+<code>
+
+<strong>Vantagens</strong>
+- Permite elementos nulos
+- Boa performance para inserções e remoções nas extremidades
+- Ordem de inserção preservada
+
+<strong>Desvantagens</strong>  
+- Mais lenta para acesso aleatório (get(index))
+- não é segura para acesso concorrente
+
+Queue<String> fila = new LinkedList<>();
+
+<strong>Adicionando elementos na fila</strong>
+fila.add("Ana");
+fila.add("Carlos");
+fila.offer("Beatriz"); // Alternativa ao add, retorna false se falhar
+
+<strong>Removendo elementos da fila</strong>
+System.out.println(fila.poll());  // Remove e retorna o primeiro (Ana)
+System.out.println(fila.remove()); // Igual ao poll, mas lança exceção se vazia
+
+<strong>Visualizando o primeiro sem remover</strong>
+System.out.println(fila.peek());   // Mostra "Carlos"
+System.out.println(fila.element()); // Igual ao peek, mas lança exceção se vazia
+
+<strong>Verificando se a fila está vazia</strong>
+System.out.println(fila.isEmpty()); // false
+
+<strong>Tamanho da fila</strong>
+System.out.println(fila.size()); // 2
+
+<strong>Iterando sobre a fila</strong>
+for (String pessoa : fila) {
+    System.out.println(pessoa);
+}
+
+<strong>Limpando a fila</strong>
+fila.clear();
+
+<strong>Verificando se está vazia novamente</strong>
+System.out.println(fila.isEmpty()); // true
+</code>
+      </pre>
+    </div>
+    
+    <div class="block" data-tags="java.util">
+      <div class="title">Queue com ArrayDeque</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- Mais rápido que LinkedList e Stack para operações de inserção e remoção nas pontas
+- Justamente por não ser sincronizado, é mais rápido em ambientes single-thread
+- Funciona tanto como Queue (FIFO) quanto como Stack (LIFO)
+- Melhor alternativa a Stack e LinkedList para filas
+
+<strong>Desvantagens</strong>
+- Não permite null
+- Não é thread-safe
+- Embora transparente, redimensionar o buffer interno pode ter custo de performance.
+
+Queue<String> fila = new ArrayDeque<>();
+
+<strong>Adicionando elementos na fila</strong>
+fila.add("Ana");
+fila.offer("Carlos");
+fila.offer("Joana");
+
+<strong>Removendo elementos da fila</strong>
+System.out.println(fila.poll());   // Remove "Ana"
+System.out.println(fila.remove()); // Remove "Carlos"
+
+<strong>Visualizando o primeiro sem remover</strong>
+System.out.println(fila.peek());    // "Joana"
+System.out.println(fila.element()); // Também "Joana"
+
+<strong>Verificar se a fila está vazia</strong>
+System.out.println(fila.isEmpty()); // false
+
+<strong>Tamanho da fila</strong>
+System.out.println(fila.size()); // 1
+
+<strong>Iterando sobre a fila</strong>
+for (String nome : fila) {
+    System.out.println(nome);
+}
+
+<strong>Limpando a fila</strong>
+fila.clear();
+
+<strong>Verificando se está vazia novamente</strong>
+System.out.println(fila.isEmpty()); // true
+</code>
+      </pre>
+    </div>
+    
+    <div class="block" data-tags="java.util">
+      <div class="title">PriorityQueue</div>
+      <pre>
+<code>
+
+<strong>Vantagens</strong>
+- Ordenação automática por prioridade
+- Permite elementos duplicados
+
+<strong>Desvantagens</strong>  
+- não é segura para uso por múltiplas threads simultaneamente
+- Ordem de iteração não é garantida
+- Não permite null
+- Remoção de elementos arbitrários é lenta (remove(Object))
+
+<strong>Criando uma fila de prioridade (ordem natural)</strong>
+PriorityQueue<Integer> fila = new PriorityQueue<>();
+
+fila.add(50);
+fila.add(10);
+fila.add(30);
+
+<strong>Iterando (ordem não garantida aqui)</strong>
+for (int num : fila) {
+    System.out.println(num);
+}
+
+<strong>Removendo em ordem de prioridade</strong>
+System.out.println(fila.poll()); // 10
+System.out.println(fila.poll()); // 30
+System.out.println(fila.poll()); // 50
+
+<strong>Verificando a cabeça da fila</strong>
+fila.offer(20);
+System.out.println(fila.peek()); // 20
+
+<strong>Fila com Comparator (ordem reversa)</strong>
+PriorityQueue<String> nomes = new PriorityQueue<>(Collections.reverseOrder());
+
+nomes.offer("Carlos");
+nomes.offer("Ana");
+nomes.offer("Bruno");
+
+System.out.println(nomes.poll()); // "Carlos"
+System.out.println(nomes.poll()); // "Bruno"
+System.out.println(nomes.poll()); // "Ana"
+
+<strong>Outros métodos úteis</strong>
+System.out.println(nomes.isEmpty());
+System.out.println(nomes.size());
+nomes.clear();
+</code>
+      </pre>
+    </div>
+    
+    <div class="block" data-tags="java.util.concurrent">
+      <div class="title">ConcurrentLinkedQueue</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- é thread-safe, o que significa que várias threads podem acessar 
+e modificar a fila ao mesmo tempo sem causar inconsistências. 
+Isso é garantido através de técnicas de sincronização internas, 
+como operações atômicas (sem necessidade de bloqueios explícitos).
+
+<strong>Desvantagens</strong>
+- Não permite null
+- Se você precisar de funcionalidades como espera ativa até que 
+a fila tenha elementos disponíveis ou até que haja espaço para 
+adicionar novos elementos (como em ArrayBlockingQueue), 
+a ConcurrentLinkedQueue não oferece esse tipo de operação
+
+<strong>Criando a fila concorrente</strong>
+ConcurrentLinkedQueue<String> fila = new ConcurrentLinkedQueue<>();
+
+<strong>Adicionando elementos</strong>
+fila.add("Tarefa1");
+fila.offer("Tarefa2");
+
+<strong>Removendo elementos</strong>
+System.out.println(fila.poll()); // Tarefa1
+System.out.println(fila.poll()); // Tarefa2
+
+<strong>Visualizando o primeiro elemento (sem remover)</strong>
+fila.offer("Tarefa3");
+System.out.println(fila.peek()); // Tarefa3
+
+<strong>Iterando sobre os elementos</strong>
+fila.offer("Tarefa4");
+fila.offer("Tarefa5");
+for (String tarefa : fila) {
+    System.out.println(tarefa);
+}
+
+<strong>Verificando se está vazia</strong>
+System.out.println(fila.isEmpty());
+
+<strong>Obtendo o tamanho atual</strong>
+System.out.println(fila.size());
+
+<strong>Remover elemento específico (como uma lista)</strong>
+fila.remove("Tarefa4");
+</code>
+      </pre>
+    </div>
+    
+    <div class="block" data-tags="java.util">
+      <div class="title">HashSet</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- Desempenho rápido em operações básicas (add, remove, contains)
+- Não permite elementos duplicados
+- Em comparação com outras implementações de Set, como TreeSet, 
+o HashSet costuma ser mais eficiente em termos de uso de memória.
+
+<strong>Desvantagens</strong>
+- Não garante ordem de iteração.
+- Como o HashSet usa tabelas de dispersão (hash tables) para armazenar 
+os elementos, ele pode consumir mais memória do que outras implementações
+de Set, como TreeSet, especialmente quando o número de elementos 
+for muito grande.
+- Não é thread-safe
+- Para elementos personalizados (objetos de classes que você cria), 
+o HashSet depende de uma implementação correta dos métodos hashCode() 
+e equals() para garantir a unicidade dos elementos
+
+<strong>Criando o HashSet</strong>
+Set<String> frutas = new HashSet<>();
+
+<strong>Adicionando elementos</strong>
+frutas.add("Maçã");
+frutas.add("Banana");
+frutas.add("Laranja");
+frutas.add("Maçã"); // Ignorado (duplicado)
+
+<strong>Exibindo elementos</strong>
+for (String fruta : frutas) {
+    System.out.println(fruta);
+}
+
+<strong>Verificar se contém um elemento</strong>
+System.out.println(frutas.contains("Banana")); // true
+
+<strong>Remover elemento</strong>
+frutas.remove("Laranja");
+
+<strong>Tamanho do conjunto</strong>
+System.out.println(frutas.size());
+
+<strong>Verificar se está vazio</strong>
+System.out.println(frutas.isEmpty());
+
+<strong>Limpar o conjunto</strong>
+frutas.clear();
+</code>
+      </pre>
+    </div>
+    
+    <div class="block" data-tags="java.util">
+      <div class="title">LinkedHashSet</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- Mantém a ordem em que os elementos foram adicionados.
+
+<strong>Desvantagens</strong>  
+- Um pouco mais lento que HashSet em termos de performance.
+
+<strong>Criando o LinkedHashSet</strong>
+Set<String> frutas = new LinkedHashSet<>();
+
+<strong>Adicionando elementos</strong>
+frutas.add("Maçã");
+frutas.add("Banana");
+frutas.add("Laranja");
+frutas.add("Maçã"); // Ignorado (duplicado)
+
+<strong>Exibindo elementos (ordem preservada)</strong>
+for (String fruta : frutas) {
+    System.out.println(fruta);
+}
+// Saída: Maçã, Banana, Laranja
+
+<strong>Verificar se contém um elemento</strong>
+System.out.println(frutas.contains("Banana")); // true
+
+<strong>Remover elemento</strong>
+frutas.remove("Maçã");
+
+<strong>Tamanho do conjunto</strong>
+System.out.println(frutas.size());
+
+<strong>Verificar se está vazio</strong>
+System.out.println(frutas.isEmpty());
+
+<strong>Limpar o conjunto</strong>
+frutas.clear();
+</code>
+      </pre>
+    </div>
+    
+    <div class="block" data-tags="java.util">
+      <div class="title">TreeSet</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- Ordena automaticamente
+- Ideal para dados que precisam estar sempre em ordem
+
+<strong>Desvantagens</strong>
+- Mais lento que HashSet e LinkedHashSet
+- Não permite null
+
+<strong>Criando o TreeSet</strong>
+Set<String> frutas = new TreeSet<>();
+
+<strong>Adicionando elementos</strong>
+frutas.add("Banana");
+frutas.add("Maçã");
+frutas.add("Laranja");
+frutas.add("Banana"); // Ignorado (duplicado)
+
+<strong>Exibindo elementos (ordem natural)</strong>
+for (String fruta : frutas) {
+    System.out.println(fruta);
+}
+// Saída ordenada: Banana, Laranja, Maçã
+
+<strong>Verificar se contém um elemento</strong>
+System.out.println(frutas.contains("Maçã")); // true
+
+<strong>Remover elemento</strong>
+frutas.remove("Banana");
+
+<strong>Tamanho do conjunto</strong>
+System.out.println(frutas.size());
+
+<strong>Verificar se está vazio</strong>
+System.out.println(frutas.isEmpty());
+
+<strong>Limpar o conjunto</strong>
+frutas.clear();
+
+<strong>Ordenação personalizada (opcional)</strong>
+TreeSet<String> frutasOrdenadas = new TreeSet<>(
+    Comparator.reverseOrder()
+);
+frutasOrdenadas.addAll(List.of("Banana", "Maçã", "Laranja"));
+System.out.println(frutasOrdenadas); // [Maçã, Laranja, Banana]
+</code>
+      </pre>
+    </div>
+    
+    <div class="block" data-tags="java.util">
+      <div class="title">EnumSet</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- Leve e rápido
+- Ideal para enums
+- Ocupa pouca memória
+
+<strong>Desvantagens</strong>
+- Só funciona com enums
+- Ordem segue a ordem de declaração do enum
+  
+<strong>Declarando um enum</strong>
+enum DiaSemana {
+    SEGUNDA, TERCA, QUARTA, QUINTA, SEXTA, SABADO, DOMINGO
+}
+
+<strong>Criando um EnumSet com todos os dias</strong>
+EnumSet<DiaSemana> todosDias = EnumSet.allOf(DiaSemana.class);
+
+<strong>Criando um EnumSet com dias úteis</strong>
+EnumSet<DiaSemana> diasUteis = EnumSet.range(DiaSemana.SEGUNDA, DiaSemana.SEXTA);
+
+<strong>Criando um EnumSet específico</strong>
+EnumSet<DiaSemana> fimDeSemana = EnumSet.of(DiaSemana.SABADO, DiaSemana.DOMINGO);
+
+<strong>Adicionando um elemento</strong>
+diasUteis.add(DiaSemana.SABADO);
+
+<strong>Removendo um elemento</strong>
+diasUteis.remove(DiaSemana.QUARTA);
+
+<strong>Verificando se contém</strong>
+System.out.println(diasUteis.contains(DiaSemana.SEGUNDA)); // true
+
+<strong>Iterando</strong>
+for (DiaSemana dia : fimDeSemana) {
+    System.out.println(dia);
+}
+
+<strong>Limpando</strong>
+fimDeSemana.clear();
+</code>
+      </pre>
+    </div>
+    
+    
+    <div class="block" data-tags="java.util">
+      <div class="title">HashMap</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- Muito rápido para busca, inserção e remoção
+- Ideal quando a ordem não importa
+
+<strong>Desvantagens</strong>
+- Ordem imprevisível
+- Não é thread-safe
+
+<strong>Criando um HashMap</strong>
+HashMap&lt;String, Integer&gt; idades = new HashMap<>();
+
+<strong>Adicionando elementos</strong>
+idades.put("Ana", 25);
+idades.put("Carlos", 30);
+idades.put("Bruna", 28);
+
+<strong>Acessando valor pela chave</strong>
+System.out.println(idades.get("Ana")); // 25
+
+<strong>Verificando se a chave existe</strong>
+System.out.println(idades.containsKey("Carlos")); // true
+
+<strong>Verificando se o valor existe</strong>
+System.out.println(idades.containsValue(28)); // true
+
+<strong>Removendo um elemento</strong>
+idades.remove("Carlos");
+
+<strong>Iterando com for-each</strong>
+for (Map.Entry&lt;String, Integer&gt; entrada : idades.entrySet()) {
+    System.out.println(entrada.getKey() + " -> " + entrada.getValue());
+}
+
+<strong>Iterando apenas pelas chaves</strong>
+for (String nome : idades.keySet()) {
+    System.out.println(nome);
+}
+
+<strong>Iterando apenas pelos valores</strong>
+for (Integer idade : idades.values()) {
+    System.out.println(idade);
+}
+
+<strong>Tamanho do mapa</strong>
+System.out.println(idades.size());
+
+<strong>Substituindo o valor de uma chave existente</strong>
+idades.put("Ana", 26);
+
+<strong>Limpar tudo</strong>
+idades.clear();
+
+<strong>Verificar se está vazio</strong>
+System.out.println(idades.isEmpty()); // true
+</code>
+      </pre>
+    </div>
+    
+    <div class="block" data-tags="java.util">
+      <div class="title">LinkedHashMap</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- Mantém a ordem de inserção
+- Boa previsibilidade para iteração
+
+<strong>Desvantagens</strong>
+- Ligeiramente mais lento que HashMap
+
+<strong>Criando um LinkedHashMap</strong>
+LinkedHashMap&lt;String, Integer&gt; notas = new LinkedHashMap<>();
+
+<strong>Adicionando elementos</strong>
+notas.put("Maria", 9);
+notas.put("João", 7);
+notas.put("Pedro", 8);
+
+<strong>Preserva ordem de inserção:</strong>
+for (Map.Entry&lt;String, Integer&gt; entry : notas.entrySet()) {
+    System.out.println(entry.getKey() + ": " + entry.getValue());
+}
+
+<strong>Acessando valor pela chave</strong>
+System.out.println(notas.get("Maria")); // 9
+
+<strong>Substituindo valor</strong>
+notas.put("Maria", 10); // atualiza a nota
+
+<strong>Verificando existência</strong>
+notas.containsKey("João"); // true
+notas.containsValue(8);    // true
+
+<strong>Removendo um item</strong>
+notas.remove("João");
+
+<strong>Iterando somente as chaves</strong>
+for (String nome : notas.keySet()) {
+    System.out.println(nome);
+}
+
+<strong>Iterando somente os valores</strong>
+for (Integer nota : notas.values()) {
+    System.out.println(nota);
+}
+
+<strong>Tamanho e limpeza</strong>
+System.out.println(notas.size());
+notas.clear();
+System.out.println(notas.isEmpty());
+</code>
+      </pre>
+    </div>
+    
+    <div class="block" data-tags="java.util">
+      <div class="title">TreeMap</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- Mantém as chaves ordenadas naturalmente (ou por um Comparator)
+- Útil para intervalos, buscas de menor/maior, etc.
+
+<strong>Desvantagens</strong>
+- Mais lento que HashMap e LinkedHashMap
+- Custo de ordenação (baseado em árvore vermelha-preta)
+
+<strong>Criando um TreeMap</strong>
+TreeMap&lt;String, Integer&gt; estoque = new TreeMap<>();
+
+<strong>Adicionando elementos</strong>
+estoque.put("Maçã", 30);
+estoque.put("Banana", 20);
+estoque.put("Laranja", 25);
+
+<strong>Ordem natural (ordenado pela chave):</strong>
+for (Map.Entry&lt;String, Integer&gt; entry : estoque.entrySet()) {
+    System.out.println(entry.getKey() + ": " + entry.getValue());
+}
+
+<strong>Acessando um valor</strong>
+System.out.println(estoque.get("Banana")); // 20
+
+<strong>Substituindo valor</strong>
+estoque.put("Banana", 22); // atualiza
+
+<strong>Verificando existência</strong>
+estoque.containsKey("Maçã");    // true
+estoque.containsValue(25);      // true
+
+<strong>Removendo item</strong>
+estoque.remove("Laranja");
+
+<strong>Iterando pelas chaves</strong>
+for (String fruta : estoque.keySet()) {
+    System.out.println(fruta);
+}
+
+<strong>Iterando pelos valores</strong>
+for (Integer quantidade : estoque.values()) {
+    System.out.println(quantidade);
+}
+
+<strong>Primeiro e último elementos</strong>
+System.out.println(estoque.firstKey()); // Banana
+System.out.println(estoque.lastKey());  // Maçã
+
+<strong>Tamanho e limpeza</strong>
+System.out.println(estoque.size());
+estoque.clear();
+System.out.println(estoque.isEmpty());
+</code>
+      </pre>
+    </div>
+
+    <div class="block" data-tags="java.util">
+      <div class="title">EnumMap</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- Extremamente eficiente para chaves do tipo Enum, 
+utilizando um array interno para armazenamento.
+- Mais rápido e eficiente em termos de memória quando 
+comparado a outras implementações de Map.
+
+<strong>Desvantagens</strong>
+Somente pode ser usado com Enum como chave.
+Não funciona bem quando as chaves não são enumeradas.
+
+<strong>Criando um EnumMap</strong>
+enum Fruta { MAÇA, BANANA, LARANJA }
+EnumMap&lt;Fruta, Integer&gt; estoque = new EnumMap&lt;&gt;(Fruta.class);
+
+<strong>Adicionando elementos</strong>
+estoque.put(Fruta.MAÇA, 30);
+estoque.put(Fruta.BANANA, 20);
+estoque.put(Fruta.LARANJA, 25);
+
+<strong>Iterando através do EnumMap</strong>
+for (Map.Entry&lt;Fruta, Integer&gt; entry : estoque.entrySet()) {
+    System.out.println(entry.getKey() + ": " + entry.getValue());
+}
+
+<strong>Acessando um valor</strong>
+System.out.println(estoque.get(Fruta.BANANA)); // 20
+
+<strong>Verificando existência</strong>
+System.out.println(estoque.containsKey(Fruta.MAÇA));    // true
+System.out.println(estoque.containsValue(25));          // true
+
+<strong>Removendo item</strong>
+estoque.remove(Fruta.LARANJA);
+
+<strong>Tamanho e limpeza</strong>
+System.out.println(estoque.size()); // 2
+estoque.clear();
+System.out.println(estoque.isEmpty()); // true
+</code>
+      </pre>
+    </div>
+    
+    <div class="block" data-tags="java.util">
+      <div class="title">ConcurrentHashMap</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- ConcurrentHashMap é thread-safe sem a necessidade 
+de bloquear toda a estrutura.
+- Excelente para ambientes concorrentes onde 
+múltiplos threads acessam o mapa simultaneamente.
+- Operações de leitura são altamente eficientes.
+
+<strong>Desvantagens</strong>
+- Mais lento que outras implementações de Map 
+em ambientes de único thread, devido ao 
+gerenciamento de concorrência.
+A API oferece algumas complexidades adicionais 
+(exemplo: operação computeIfAbsent).
+
+<strong>Criando um ConcurrentHashMap</strong>
+ConcurrentHashMap&lt;String, Integer&gt; mapaConcorrente = new ConcurrentHashMap&lt;&gt;();
+
+<strong>Adicionando elementos</strong>
+mapaConcorrente.put("Maçã", 10);
+mapaConcorrente.put("Banana", 15);
+mapaConcorrente.put("Laranja", 20);
+
+<strong>Iterando através do ConcurrentHashMap</strong>
+for (Map.Entry&lt;String, Integer&gt; entry : mapaConcorrente.entrySet()) {
+    System.out.println(entry.getKey() + ": " + entry.getValue());
+}
+
+<strong>Acessando um valor</strong>
+System.out.println(mapaConcorrente.get("Banana")); // 15
+
+<strong>Verificando existência</strong>
+System.out.println(mapaConcorrente.containsKey("Maçã"));  // true
+System.out.println(mapaConcorrente.containsValue(25));    // false
+
+<strong>Removendo item</strong>
+mapaConcorrente.remove("Laranja");
+
+<strong>Usando putIfAbsent</strong>
+mapaConcorrente.putIfAbsent("Maçã", 25);  // Não altera, pois "Maçã" já existe
+
+<strong>Tamanho e limpeza</strong>
+System.out.println(mapaConcorrente.size());  // 2
+mapaConcorrente.clear();
+System.out.println(mapaConcorrente.isEmpty()); // true
+</code>
+      </pre>
+    </div>
+    
+    <div class="block" data-tags="java.util">
+      <div class="title">Collections.synchronizedList</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- Garante que a lista seja thread-safe, 
+ou seja, segura para acesso em múltiplas threads simultâneas, 
+com a sincronização embutida.
+- Útil quando se trabalha em ambientes concorrentes, onde várias 
+threads podem acessar ou modificar a lista.
+
+<strong>Desvantagens</strong>  
+- A sincronização pode resultar em algum overhead de performance, 
+especialmente em operações de leitura, dependendo do número de 
+threads simultâneas acessando a lista.
+
+- Requer que todas as operações de leitura e iteração sejam feitas 
+dentro de um bloco synchronized, o que pode ser um pouco mais 
+complexo de gerenciar.
+
+<strong>Criando uma lista sincronizada</strong>
+List&lt;String&gt; lista = new ArrayList&lt;&gt;();
+List&lt;String&gt; listaSincronizada = Collections.synchronizedList(lista);
+
+<strong>Adicionando elementos</strong>
+listaSincronizada.add("Maçã");
+listaSincronizada.add("Banana");
+listaSincronizada.add("Laranja");
+
+<strong>Iterando através da lista sincronizada</strong>
+// Para iteração, é necessário sincronizar explicitamente o bloco de código
+synchronized (listaSincronizada) {
+    for (String item : listaSincronizada) {
+        System.out.println(item);
+    }
+}
+
+<strong>Verificando se contém um elemento</strong>
+System.out.println(listaSincronizada.contains("Banana"));  // true
+
+<strong>Removendo um item</strong>
+listaSincronizada.remove("Laranja");
+
+<strong>Verificando o tamanho</strong>
+System.out.println(listaSincronizada.size());  // 2
+
+<strong>Limpar a lista</strong>
+listaSincronizada.clear();
+System.out.println(listaSincronizada.isEmpty());  // true
+</code>
+      </pre>
+    </div>
+    
+    <div class="block" data-tags="java.util">
+      <div class="title">Collections.unmodifiableList</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- Garante que a lista não seja modificada após ser criada, 
+o que é ideal para situações em que você deseja garantir 
+que os dados não sejam alterados acidentalmente ou 
+durante o uso em APIs públicas.
+- Aumenta a segurança e integridade dos dados.
+
+<strong>Desvantagens</strong>
+- Não permite modificações, o que pode ser uma limitação 
+quando for necessário realizar alterações na lista depois
+de sua criação.
+- Qualquer tentativa de modificação resultará em 
+uma UnsupportedOperationException
+  
+<strong>Criando uma lista imutável</strong>
+List&lt;String&gt; lista = new ArrayList&lt;&gt;();
+lista.add("Maçã");
+lista.add("Banana");
+lista.add("Laranja");
+
+// Tornando a lista imutável
+List&lt;String&gt; listaImutavel = Collections.unmodifiableList(lista);
+
+<strong>Tentando modificar a lista imutável</strong>
+try {
+    listaImutavel.add("Uva");  // Lançará uma exceção UnsupportedOperationException
+} catch (UnsupportedOperationException e) {
+    System.out.println("Não é possível modificar uma lista imutável.");
+}
+
+<strong>Acessando um item da lista imutável</strong>
+System.out.println(listaImutavel.get(0));  // Maçã
+
+<strong>Verificando o tamanho da lista</strong>
+System.out.println(listaImutavel.size());  // 3
+
+<strong>Verificando se contém um item</strong>
+System.out.println(listaImutavel.contains("Banana"));  // true
+</code>
+      </pre>
+    </div>
+
+    <h2 class="section-title">📘 Thread</h2>
+
+    <div class="block" data-tags="java.lang">
+      <div class="title">Thread (java.lang.Thread)</div>
+      <pre>
+<code>
+<strong>Vantagens</strong>
+- Permite que seu programa execute tarefas simultaneamente.
+- Pode melhorar o desempenho em sistemas com múltiplos núcleos.
+- Ideal para operações demoradas, como chamadas de rede ou leitura de arquivos, sem bloquear a interface principal.
+
+<strong>Desvantagens</strong>
+- Introduz complexidade no código.
+- Pode causar erros difíceis de detectar como race conditions, deadlocks e concorrência incorreta.
+- Requer cuidado com o uso de recursos compartilhados.
+
+<strong>Criando uma Thread estendendo a classe Thread</strong>
+class MinhaThread extends Thread {
+    public void run() {
+        System.out.println("Executando na thread: " + Thread.currentThread().getName());
+    }
+}
+
+MinhaThread t1 = new MinhaThread();
+t1.start();  // Inicia a thread
+
+<strong>Criando uma Thread implementando Runnable</strong>
+class MinhaTarefa implements Runnable {
+    public void run() {
+        System.out.println("Executando tarefa em: " + Thread.currentThread().getName());
+    }
+}
+
+Thread t2 = new Thread(new MinhaTarefa());
+t2.start();  // Inicia a thread
+
+<strong>Usando expressão lambda com Runnable (Java 8+)</strong>
+Thread t3 = new Thread(() -> {
+    System.out.println("Executando com lambda em: " + Thread.currentThread().getName());
+});
+t3.start();
+
+<strong>Esperando uma Thread terminar (join)</strong>
+try {
+    t1.join();  // Espera a thread t1 terminar
+    t2.join();
+    t3.join();
+} catch (InterruptedException e) {
+    e.printStackTrace();
+}
+
+<strong>Verificando se uma Thread está viva</strong>
+System.out.println(t1.isAlive());  // true ou false
+</code>
+        </pre>
+      </div>
+      
+      <div class="block" data-tags="java.util.concurrent">
+        <div class="title">ExecutorService</div>
+        <pre>
+<code>
+<strong>Vantagens</strong>
+- Gerencia um pool de threads, evitando a criação e destruição frequente de threads.
+- Ideal para aplicações que precisam executar múltiplas tarefas de forma eficiente.
+- Fornece métodos para controle mais refinado da execução de tarefas.
+
+<strong>Desvantagens</strong>
+- Precisa ser finalizado corretamente com shutdown().
+- Pode ser complexo para tarefas que dependem entre si.
+
+<strong>Criando um ExecutorService com um pool fixo</strong>
+ExecutorService executor = Executors.newFixedThreadPool(3);
+
+<strong>Executando uma tarefa</strong>
+executor.execute(() -> {
+    System.out.println("Executando em thread do pool: " + Thread.currentThread().getName());
+});
+
+<strong>Executando tarefa com retorno (Callable)</strong>
+Callable&lt;String&gt; tarefa = () -> {
+    return "Resultado da tarefa";
+};
+
+Future&lt;String&gt; futuro = executor.submit(tarefa);
+try {
+    System.out.println(futuro.get());  // Espera e obtém o resultado
+} catch (Exception e) {
+    e.printStackTrace();
+}
+
+<strong>Encerrando o ExecutorService</strong>
+executor.shutdown();
+</code>
+        </pre>
+      </div>
+      
+      <div class="block" data-tags="java.lang">
+        <div class="title">synchronized</div>
+        <pre>
+<code>
+<strong>Vantagens</strong>
+- Garante que apenas uma thread execute um bloco de código por vez.
+- Evita problemas como race conditions ao acessar recursos compartilhados.
+
+<strong>Desvantagens</strong>
+- Pode causar gargalos se mal utilizado.
+- Pode levar a deadlocks se houver má coordenação entre os recursos.
+
+<strong>Método sincronizado</strong>
+public synchronized void incrementar() {
+    contador++;
+}
+
+<strong>Bloco sincronizado</strong>
+public void incrementar() {
+    synchronized(this) {
+        contador++;
+    }
+}
+
+<strong>Sincronizando em um objeto específico</strong>
+Object lock = new Object();
+
+public void tarefa() {
+    synchronized(lock) {
+        // Somente uma thread pode acessar aqui por vez
+        System.out.println("Acessando recurso com lock");
+    }
+}
+
+<strong>Evite isso!</strong>
+// Sincronizar em objetos mutáveis, como Strings ou listas, pode ser perigoso
+</code>
+        </pre>
+      </div>
+      
+      <div class="block" data-tags="java-concorrencia">
+        <div class="title">wait(), notify(), notifyAll()</div>
+        <pre>
+<code>
+<strong>O que são?</strong>
+- São métodos da classe Object usados para comunicação entre threads.
+- Devem ser usados dentro de blocos sincronizados (com synchronized).
+
+<strong>wait()</strong>
+- Faz a thread atual "esperar" até que outra thread chame notify() ou notifyAll().
+- Libera o monitor do objeto (o lock), permitindo que outras threads entrem no bloco synchronized.
+
+<strong>notify()</strong>
+- Acorda uma thread que está esperando (`wait()`) no mesmo objeto monitor.
+
+<strong>notifyAll()</strong>
+- Acorda todas as threads que estão esperando (`wait()`) no objeto monitor.
+
+<strong>Regras importantes</strong>
+- Só funcionam dentro de blocos sincronizados (senão lançam IllegalMonitorStateException).
+- Sempre use um objeto comum para `wait()` e `notify()` (ex: `synchronized (this)`).
+
+<strong>Exemplo: Produtor e Consumidor</strong>
+class Buffer {
+    private int valor;
+    private boolean disponivel = false;
+
+    public synchronized void produzir(int novoValor) {
+        while (disponivel) {
+            try {
+                wait();  // Espera até que o valor seja consumido
+            } catch (InterruptedException e) {}
+        }
+        valor = novoValor;
+        disponivel = true;
+        System.out.println("Produzido: " + valor);
+        notify();  // Avisa que há um novo valor disponível
+    }
+
+    public synchronized int consumir() {
+        while (!disponivel) {
+            try {
+                wait();  // Espera até que um valor seja produzido
+            } catch (InterruptedException e) {}
+        }
+        disponivel = false;
+        System.out.println("Consumido: " + valor);
+        notify();  // Avisa que o buffer está livre para produção
+        return valor;
+    }
+}
+
+<strong>Uso das threads</strong>
+Buffer buffer = new Buffer();
+
+Thread produtor = new Thread(() -> {
+    for (int i = 0; i < 5; i++) {
+        buffer.produzir(i);
+    }
+});
+
+Thread consumidor = new Thread(() -> {
+    for (int i = 0; i < 5; i++) {
+        buffer.consumir();
+    }
+});
+
+produtor.start();
+consumidor.start();
+</code>
+        </pre>
+      </div>
+      
+      <div class="block" data-tags="java-concorrencia">
+        <div class="title">wait()/notify() vs BlockingQueue</div>
+        <pre>
+<code>
+<strong>wait()/notify()</strong>
+✅ Mais controle e flexibilidade.
+⚠️ Mais código, fácil de errar (risco de deadlock e race conditions).
+🔧 Ideal quando você precisa de uma lógica de sincronização customizada.
+
+<strong>BlockingQueue (java.util.concurrent)</strong>
+✅ Simples de usar e segura para múltiplas threads.
+✅ Já trata sincronização internamente.
+✅ Evita uso manual de synchronized, wait() e notify().
+🔧 Ideal para cenários Produtor-Consumidor.
+
+<strong>Exemplo com BlockingQueue</strong>
+import java.util.concurrent.*;
+
+BlockingQueue&lt;Integer&gt; fila = new ArrayBlockingQueue&lt;&gt;(10);
+
+Thread produtor = new Thread(() -> {
+    try {
+        for (int i = 0; i < 5; i++) {
+            fila.put(i);  // Espera se a fila estiver cheia
+            System.out.println("Produzido: " + i);
+        }
+    } catch (InterruptedException e) {}
+});
+
+Thread consumidor = new Thread(() -> {
+    try {
+        for (int i = 0; i < 5; i++) {
+            int valor = fila.take();  // Espera se a fila estiver vazia
+            System.out.println("Consumido: " + valor);
+        }
+    } catch (InterruptedException e) {}
+});
+
+produtor.start();
+consumidor.start();
+
+<strong>Quando usar cada um?</strong>
+🧠 Use wait()/notify() quando:
+- Precisa de lógica mais complexa ou sincronização em diferentes objetos.
+- Está aprendendo o funcionamento de baixo nível de threads.
+
+🚀 Use BlockingQueue quando:
+- Quer simplicidade, segurança e performance.
+- Está implementando produtores/consumidores com foco em robustez.
+</code>
+        </pre>
+      </div>
+      
+      <div class="block" data-tags="java-concorrencia">
+        <div class="title">Semaphore</div>
+        <pre>
+<code>
+<strong>O que é?</strong>
+- Controla o número de threads que podem acessar um recurso ao mesmo tempo.
+- Útil para limitar o acesso a uma quantidade finita de recursos (como conexões de banco, impressoras, etc).
+
+<strong>Exemplo</strong>
+import java.util.concurrent.Semaphore;
+
+Semaphore semaforo = new Semaphore(2);  // Limite de 2 threads simultâneas
+
+Runnable tarefa = () -> {
+    try {
+        semaforo.acquire();  // Pede permissão
+        System.out.println(Thread.currentThread().getName() + " entrou");
+        Thread.sleep(1000);
+        System.out.println(Thread.currentThread().getName() + " saiu");
+    } catch (InterruptedException e) {
+    } finally {
+        semaforo.release();  // Libera permissão
+    }
+};
+
+for (int i = 0; i < 5; i++) {
+    new Thread(tarefa).start();
+}
+
+<strong>Resultado:</strong>
+No máximo 2 threads executam o bloco "crítico" ao mesmo tempo.
+</code>
+        </pre>
+      </div>
+      
+      <div class="block" data-tags="java-concorrencia">
+        <div class="title">CountDownLatch</div>
+        <pre>
+<code>
+<strong>O que é?</strong>
+- Permite que uma ou mais threads esperem até que outras completem alguma operação.
+
+<strong>Exemplo: Esperar 3 tarefas finalizarem</strong>
+import java.util.concurrent.CountDownLatch;
+
+CountDownLatch latch = new CountDownLatch(3);
+
+Runnable tarefa = () -> {
+    System.out.println(Thread.currentThread().getName() + " trabalhando...");
+    try { Thread.sleep(1000); } catch (InterruptedException e) {}
+    latch.countDown();  // Reduz o contador
+};
+
+new Thread(tarefa).start();
+new Thread(tarefa).start();
+new Thread(tarefa).start();
+
+try {
+    latch.await();  // Espera o contador chegar a 0
+    System.out.println("Todas as tarefas concluídas!");
+} catch (InterruptedException e) {}
+
+<strong>Ideal para</strong>
+- Esperar múltiplas tarefas antes de seguir.
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="java-concorrencia">
+        <div class="title">CyclicBarrier</div>
+        <pre>
+<code>
+<strong>O que é?</strong>
+- Permite que um grupo de threads esperem umas pelas outras até atingirem um "ponto de barreira".
+- Pode ser reutilizado (diferente do CountDownLatch).
+
+<strong>Exemplo: 3 threads esperam juntas</strong>
+import java.util.concurrent.CyclicBarrier;
+
+CyclicBarrier barreira = new CyclicBarrier(3, () -> {
+    System.out.println("Todas chegaram à barreira! Executando ação final.");
+});
+
+Runnable tarefa = () -> {
+    try {
+        System.out.println(Thread.currentThread().getName() + " pronto");
+        barreira.await();  // Espera as outras
+        System.out.println(Thread.currentThread().getName() + " passou a barreira");
+    } catch (Exception e) {}
+};
+
+for (int i = 0; i < 3; i++) {
+    new Thread(tarefa).start();
+}
+
+<strong>Ideal para</strong>
+- Sincronizar fases de execução entre threads.
+</code>
+        </pre>
+      </div>
+      
+      <div class="block" data-tags="java-concorrencia">
+        <div class="title">CompletableFuture</div>
+        <pre>
+<code>
+<strong>O que é?</strong>
+- Representa uma computação assíncrona.
+- Permite encadear tarefas de forma não bloqueante.
+
+<strong>Exemplo simples</strong>
+import java.util.concurrent.*;
+
+CompletableFuture&lt;String&gt; futuro = CompletableFuture.supplyAsync(() -> {
+    return "Resultado";
+});
+
+futuro.thenAccept(resultado -> {
+    System.out.println("Recebido: " + resultado);
+});
+
+<strong>Encadeando tarefas</strong>
+CompletableFuture&lt;String&gt; encadeado = futuro
+    .thenApply(resultado -> resultado + " modificado")
+    .thenApply(String::toUpperCase);
+
+System.out.println(encadeado.get());  // Resultado MODIFICADO
+
+<strong>Ideal para</strong>
+- Executar tarefas assíncronas de forma fluente e eficiente.
+</code>
+        </pre>
+      </div>
+      
+      <div class="block" data-tags="java-concorrencia">
+        <div class="title">ForkJoinPool</div>
+        <pre>
+<code>
+<strong>O que é?</strong>
+- Um pool de threads especializado em dividir tarefas recursivas em subtarefas menores.
+- Ideal para paralelizar tarefas intensivas (divide and conquer).
+
+<strong>Exemplo básico</strong>
+import java.util.concurrent.*;
+
+class SomaTask extends RecursiveTask&lt;Integer&gt; {
+    int inicio, fim;
+
+    SomaTask(int inicio, int fim) {
+        this.inicio = inicio;
+        this.fim = fim;
+    }
+
+    protected Integer compute() {
+        if (fim - inicio &lt;= 10) {
+            int soma = 0;
+            for (int i = inicio; i &lt;= fim; i++) soma += i;
+            return soma;
+        } else {
+            int meio = (inicio + fim) / 2;
+            SomaTask t1 = new SomaTask(inicio, meio);
+            SomaTask t2 = new SomaTask(meio + 1, fim);
+            t1.fork();
+            return t2.compute() + t1.join();
+        }
+    }
+}
+
+ForkJoinPool pool = new ForkJoinPool();
+int resultado = pool.invoke(new SomaTask(1, 100));
+System.out.println("Soma: " + resultado);
+
+<strong>Ideal para</strong>
+- Tarefas grandes que podem ser divididas em partes menores.
+</code>
+        </pre>
+      </div>
+      
+      <div class="block" data-tags="java-concorrencia">
+        <div class="title">ForkJoinPool</div>
+        <pre>
+<code>
+<strong>Paralelismo vs Concorrência</strong>
+
+<strong>Paralelismo:</strong> Refere-se à execução de múltiplas tarefas 
+simultaneamente em diferentes núcleos do processador.
+
+<strong>Concorrência:</strong> Refere-se à execução de múltiplas tarefas 
+de forma alternada (intercalada), em um único núcleo ou 
+múltiplos núcleos, com a ideia de que o processador 
+troca rapidamente entre elas.
+
+<strong>Exemplo de paralelismo:</strong>
+
+Usando ForkJoinPool para dividir um problema em subtarefas 
+e executá-las simultaneamente.
+
+<strong>Exemplo de concorrência:</strong>
+
+Usando ExecutorService para gerenciar tarefas que não precisam 
+ser executadas simultaneamente, mas podem ser divididas para 
+otimizar o tempo total de execução.
+</code>
+        </pre>
+      </div>
+
+      <h2 class="section-title">📘 Strams</h2>
+      
+      <div class="block" data-tags="java-concorrencia">
+        <div class="title">Streams</div>
+        <pre>
+<code>
+<strong>Criação de Streams</strong>
+
+List<String> lista = Arrays.asList(
+  "maçã", "banana", "laranja");
+Stream<String> stream = lista.stream();
+    
+int[] numeros = {1, 2, 3, 4, 5};
+IntStream streamNumeros = Arrays
+  .stream(numeros);
+
+Stream<String> stream = Stream.of("a", "b", "c");
+
+<strong>Streams - filter</strong>
+
+List<String> lista = Arrays.asList(
+  "maçã", "banana", "laranja");
+List<String> listaFiltrada = lista.stream()
+              .filter(s -> s.startsWith("b"))
+              .collect(Collectors
+              .toList());
+
+System.out.println(listaFiltrada); // [banana]
+
+<strong>Streams - map</strong>
+
+List<String> lista = Arrays.asList(
+  "maçã", "banana", "laranja");
+List<String> listaMaiuscula = lista.stream()
+                    .map(String::toUpperCase)
+                    .collect(Collectors
+                    .toList());
+System.out.println(listaMaiuscula); 
+// [MAÇÃ, BANANA, LARANJA]
+</code> 
+        </pre>
+      </div>
+
+      <div class="block" data-tags="java-streams">
+        <div class="title">Streams</div>
+        <pre>
+<code>
+<strong>Streams - distinct</strong>
+
+List<String> lista = Arrays.asList(
+  "maçã", "banana", "laranja", "banana");
+List<String> listaDistinta = lista.stream()
+                      .distinct()
+                      .collect(Collectors
+                      .toList());
+System.out.println(listaDistinta); 
+// [maçã, banana, laranja]
+
+<strong>Streams - sorted</strong>
+
+List<String> lista = Arrays.asList(
+  "maçã", "banana", "laranja");
+List<String> listaOrdenada = lista.stream()
+                      .sorted()
+                      .collect(Collectors
+                      .toList());
+System.out.println(listaOrdenada); 
+// [banana, laranja, maçã]
+
+<strong>Streams - forEach</strong>
+
+List<String> lista = Arrays.asList(
+  "maçã", "banana", "laranja");
+lista.stream()
+  .forEach(System.out::println); 
+  // Imprime cada item da lista
+</code>
+              </pre>      
+            </div>
+
+      <div class="block" data-tags="java-streams">
+        <div class="title">Streams</div>
+        <pre>
+<code>
+<strong>Streams - reduce</strong>  
+
+//Realiza uma redução em um stream 
+de elementos, combinando-os de 
+acordo com um acumulador.
+
+List<Integer> lista = Arrays
+  .asList(1, 2, 3, 4);
+int soma = lista.stream()
+                .reduce(0, Integer::sum);
+System.out.println(soma); // 10
+  
+<strong>Streams - count</strong>
+
+List<String> lista = Arrays
+  .asList("maçã", "banana", "laranja");
+long count = lista.stream().count();
+System.out.println(count); // 3
+
+<strong>Streams - paralelo</strong>
+
+List<Integer> lista = Arrays
+  .asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+int somaParalela = lista
+  .parallelStream()
+  .reduce(0, Integer::sum);
+System.out.println(somaParalela); // 55
+</code>
+          </pre>
+        </div>
+
+      <div class="block" data-tags="java-streams">
+        <div class="title">Streams</div>
+        <pre>
+<code>
+<strong>Streams - Map</strong>
+
+List<String> nomes = Arrays
+  .asList("ana", "joão", "maria");
+
+List<String> nomesMaiusculos = nomes.stream()
+  // Transforma cada nome em MAIÚSCULO
+  .map(String::toUpperCase)
+  .collect(Collectors.toList());
+  
+System.out.println(nomesMaiusculos); 
+// [ANA, JOÃO, MARIA]
+  
+<strong>Streams - FlatMap</strong>
+
+List<List<String>> nomesAninhados = Arrays.asList(
+  Arrays.asList("ana", "joão"),
+  Arrays.asList("maria", "pedro")
+);
+
+List<String> nomes = nomesAninhados.stream()
+  // "Achata" os sub-streams em um só
+  .flatMap(List::stream) 
+  .collect(Collectors.toList());
+
+System.out.println(nomes); 
+// [ana, joão, maria, pedro]
+</code>
+        </pre>
+      </div>
+      
+      <div class="block" data-tags="java-streams">
+        <div class="title">Streams</div>
+        <pre>
+<code>
+<strong>Streams - Limit</strong>
+
+List<Integer> numeros = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+List<Integer> primeirosTres = numeros.stream()
+    .limit(3) // Pega só os 3 primeiros
+    .collect(Collectors.toList());
+
+System.out.println(primeirosTres); // [1, 2, 3]
+  
+<strong>Streams - Skip</strong>
+
+List<Integer> numeros = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+List<Integer> depoisDosDoisPrimeiros = numeros.stream()
+    .skip(2) // Pula os dois primeiros
+    .collect(Collectors.toList());
+
+System.out.println(depoisDosDoisPrimeiros); 
+// [3, 4, 5, 6]
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="java-streams">
+        <div class="title">Streams</div>
+        <pre>
+<code>
+<strong>Streams - peek</strong>
+
+List<String> nomes = Arrays
+  .asList("ana", "joão", "maria");
+
+List<String> resultado = nomes.stream()
+.peek(
+  nome -> System.out.println(
+    "Original: " + nome))
+.map(String::toUpperCase)
+.peek(nome -> System.out.println(
+  "Maiúsculo: " + nome))
+.collect(Collectors.toList());
+
+System.out.println(resultado); 
+// [ANA, JOÃO, MARIA]      
+</code>
+        </pre>
+      </div>
+    
   </main>
 
   <script src="scripts.js"></script>
