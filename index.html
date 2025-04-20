@@ -2906,6 +2906,491 @@ System.out.println(resultado);
 </code>
         </pre>
       </div>
+
+      <h2 class="section-title">📘 Tipos de Classe</h2>
+
+      <div class="block" data-tags="java-streams">
+        <div class="title">Classes</div>
+        <pre>
+<code>
+A forma geral da declaração de uma classe 
+é a seguinte
+
+[modificadores] class [nome classe] extends 
+[nome super] implements [nome interface]
+
+<strong>Modificadores</strong>
+
+<strong>public: </strong>permite definir classes públicas. 
+Estas classes são acessíveis a partir de 
+qualquer objeto, independentemente do package. 
+Uma classe pública deve ser a única classe 
+desse tipo no arquivo em que está declarada e 
+o nome do arquivo deve ser igual ao da classe.
+
+<strong>friendly:</strong> se nenhum modificador de classe for
+especificado, então a classe será considerada 
+friendly. Apenas os objetos integrantes do 
+mesmo package podem utilizar uma 
+classe friendly.
+
+<strong>final:</strong> Uma classe final pode ser instanciada, 
+mas não pode ser derivada, isto é, não pode 
+ser superclasse de nenhuma subclasse. Algumas 
+classes predefinidas no ambiente Java têm esta 
+propriedade. Outras não, como as classes no 
+java.awt, por exemplo.
+
+<strong>abstract:</strong> Classes abstratas são aquelas que 
+contém ao menos um método incompleto. 
+Desse modo uma classe abstrata não pode 
+ser instanciada, mas pode ser derivada. 
+Neste caso, a subclasse deve prover o corpo 
+do método para que possa ser instanciada. 
+Isto é muito útil quando desejamos 
+definir em uma classe regras gerais para o 
+comportamento de uma parte do programa, 
+para que, mais tarde, as regras mais 
+específicas sejam introduzidas por subclasses.
+
+<strong>sealed: </strong> Quando uma classe é marcada como 
+<code>sealed</code>, ela deve especificar quais subclasses 
+podem herdá-la usando a cláusula <code>permits</code>.
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="java-classes">
+        <div class="title">Classe pública</div>
+        <pre>
+<code>
+<strong>public:</strong> O modificador <code>public</code> define 
+uma classe que pode ser acessada a partir 
+de qualquer outro pacote no projeto.
+
+<strong>Regras importantes:</strong>
+- Apenas uma classe <code>public</code> pode existir por 
+arquivo .java.
+- O nome do arquivo deve ser o mesmo da classe 
+pública.
+- A classe pode ser acessada diretamente por 
+outras classes.
+
+<strong>Exemplo:</strong>
+
+// Arquivo: MinhaClasse.java
+public class MinhaClasse {
+    public void saudacao() {
+        System.out.println("Olá! Eu sou uma 
+        classe pública.");
+    }
+}
+
+// Em outro arquivo no mesmo ou outro pacote:
+public class Teste {
+    public static void main(String[] args) {
+        MinhaClasse obj = new MinhaClasse();
+        obj.saudacao();
+    }
+}
+
+<strong>Uso comum:</strong> Classes públicas são usadas para 
+expor funcionalidades principais, como APIs, 
+serviços, controladores ou classes principais 
+com <code>main()</code>.
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="java-classes">
+        <div class="title">Classe friendly (default)</div>
+        <pre>
+<code>
+<strong>friendly (ou default):</strong> Quando uma classe não 
+possui nenhum modificador de acesso explícito 
+como <code>public</code>, <code>protected</code> ou <code>private</code>, ela é 
+considerada uma classe <strong>friendly</strong> ou de acesso 
+<strong>package-private</strong>.
+
+<strong>Comportamento:</strong>
+- Só pode ser acessada por outras classes 
+dentro do mesmo pacote.
+- Não pode ser acessada por classes de 
+pacotes diferentes.
+
+<strong>Exemplo:</strong>
+
+// Arquivo: MinhaClasseAmiga.java
+class MinhaClasseAmiga {
+    void saudacao() {
+        System.out.println(
+          "Olá! Eu sou uma classe friendly.");
+    }
+}
+
+// Outra classe no mesmo pacote
+public class Teste {
+    public static void main(String[] args) {
+        MinhaClasseAmiga obj = new MinhaClasseAmiga();
+        obj.saudacao();  // Funciona normalmente
+    }
+}
+
+<strong>Exemplo em outro pacote:</strong>
+// Isso causará erro de compilação
+import outro.pacote.MinhaClasseAmiga;
+
+public class OutroTeste {
+    public static void main(String[] args) {
+        MinhaClasseAmiga obj = new MinhaClasseAmiga(); // Erro
+    }
+}
+
+<strong>Uso comum:</strong> Classes friendly são úteis para 
+encapsular funcionalidades internas que 
+não devem ser expostas para outros pacotes.
+</code>
+        </pre>
+      </div>
+      
+      <div class="block" data-tags="java-classes">
+        <div class="title">Classe final</div>
+        <pre>
+<code>
+<strong>final:</strong> Uma classe declarada com o modificador 
+<code>final</code> não pode ser estendida. Isso significa 
+que nenhuma outra classe poderá herdar dela.
+
+<strong>Comportamento:</strong>
+- Pode ser instanciada normalmente.
+- Não pode servir de superclasse para outras 
+classes.
+
+<strong>Exemplo:</strong>
+
+// Arquivo: Utilidade.java
+public final class Utilidade {
+    public static void imprimir(String texto) {
+        System.out.println(texto);
+    }
+}
+
+// Tentando estender a classe final (causará erro)
+public class MinhaUtilidade extends Utilidade {  // ERRO!
+    // Não é possível herdar de uma classe final
+}
+
+<strong>Uso comum:</strong>
+- Quando se quer garantir que a implementação 
+  da classe não será alterada por herança.
+- Muito usado em classes utilitárias (como <code>java.lang.Math</code> ou <code>java.lang.String</code>).
+
+<strong>Observação:</strong>
+- Embora a classe não possa ser estendida, 
+  seus métodos ainda podem ser sobrecarregados 
+  (overload) dentro da própria classe, 
+  se houver necessidade.
+</code>
+        </pre>
+      </div>
+     
+      <div class="block" data-tags="java-classes">
+        <div class="title">Classe abstract</div>
+        <pre>
+<code>
+<strong>abstract:</strong> Uma classe abstrata serve como modelo 
+para outras classes. Ela pode conter métodos 
+com ou sem implementação.
+
+<strong>Comportamento:</strong>
+- Não pode ser instanciada diretamente.
+- Pode conter métodos abstratos (sem corpo).
+- Deve ser estendida por outra classe que 
+  implemente os métodos abstratos.
+
+<strong>Exemplo:</strong>
+
+abstract class Animal {
+    // Método abstrato (sem corpo)
+    abstract void emitirSom();
+
+    // Método com implementação
+    void dormir() {
+        System.out.println("Dormindo...");
+    }
+}
+
+// Classe concreta que estende a abstrata
+class Cachorro extends Animal {
+    @Override
+    void emitirSom() {
+        System.out.println("Latindo...");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Animal a = new Animal(); // ERRO! Classe abstrata não pode ser instanciada
+        Cachorro c = new Cachorro();
+        c.emitirSom();  // Latindo...
+        c.dormir();     // Dormindo...
+    }
+}
+
+<strong>Uso comum:</strong>
+- Definir estruturas e comportamentos que devem 
+  ser implementados pelas subclasses.
+- Fornecer métodos utilitários ou comuns com 
+  implementação padrão.
+
+<strong>Observação:</strong>
+- Uma classe abstrata pode conter atributos,
+  construtores e métodos concretos (com corpo).
+- Pode ou não ter métodos abstratos.
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="java-classes">
+        <div class="title">Classe sealed</div>
+        <pre>
+<code>
+<strong>sealed:</strong> Uma classe sealed (selada) permite 
+controlar quais outras classes podem estendê-la.
+
+<strong>Comportamento:</strong>
+- Define explicitamente quem pode estender a 
+classe.
+- Introduzido no Java 15 como preview, e
+  estabilizado no Java 17.
+
+<strong>Palavras-chave:</strong>
+- <em>sealed</em> → indica que a classe é selada.
+- <em>permits</em> → define as classes que podem 
+estendê-la.
+- <em>non-sealed</em> → uma subclasse que remove 
+a restrição.
+- <em>final</em> → subclasse que não pode ser 
+estendida.
+- <em>sealed</em> → subclasse que também restringe 
+quem pode estendê-la.
+
+<strong>Exemplo:</strong>
+
+public sealed class Forma permits Circulo, Retangulo { }
+
+public final class Circulo extends Forma {
+    // não pode ser estendida
+}
+
+public non-sealed class Retangulo extends Forma {
+    // pode ser estendida por outras classes
+}
+
+<strong>Vantagens:</strong>
+- Maior controle da hierarquia de classes.
+- Segurança e previsibilidade ao modelar APIs.
+- Ajuda o compilador e ferramentas estáticas a 
+entender o modelo de herança.
+
+<strong>Regras:</strong>
+- Todas as subclasses devem estar no mesmo 
+arquivo ou ser compiladas juntas.
+- Cada subclasse deve declarar se é sealed, 
+non-sealed ou final.
+
+</code>
+        </pre>
+      </div>
+      <h2 class="section-title">📘 Tipos de Métodos</h2>      
+      
+      <div class="block" data-tags="metodo-instancia">
+        <div class="title">Método de Instância</div>
+        <pre>
+<code>
+class Pessoa {
+  void falar() {
+    System.out.println("Olá!");
+  }
+}
+
+Pessoa p = new Pessoa();
+p.falar();  // Olá!  
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="metodo-estatico">
+        <div class="title">Método Estático</div>
+        <pre>
+<code>
+- Pode ser chamado sem instanciar a classe.
+
+class Util {
+    static int somar(int a, int b) {
+        return a + b;
+    }
+}
+
+int resultado = Util.somar(2, 3);  // 5  
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="metodo-abstrato">
+        <div class="title">Método Abstrato</div>
+        <pre>
+<code>
+- Declarado em classes abstratas. Sem corpo.
+- Deve ser implementado por subclasses.
+
+abstract class Animal {
+    abstract void emitirSom();
+}
+
+class Gato extends Animal {
+    void emitirSom() {
+        System.out.println("Miau");
+    }
+}  
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="metodo-final">
+        <div class="title">Método final</div>
+        <pre>
+<code>
+- Não pode ser sobrescrito por subclasses.
+
+class Pai {
+    final void metodoImportante() {
+        System.out.println("Importante!");
+    }
+}
+
+class Filho extends Pai {
+    // void metodoImportante() {} // ERRO!
+}  
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="metodo-sobrecarga">
+        <div class="title">Método Sobrecarga</div>
+        <pre>
+<code>
+- Vários métodos com o mesmo nome, 
+mas assinaturas diferentes.
+
+class Calculadora {
+    int somar(int a, int b) {
+        return a + b;
+    }
+
+    double somar(double a, double b) {
+        return a + b;
+    }
+}  
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="metodo-sobrescrito">
+        <div class="title">Método Sobrescrito</div>
+        <pre>
+<code>
+- Substitui o comportamento de um 
+método herdado.
+
+class Animal {
+    void emitirSom() {
+        System.out.println("Som");
+    }
+}
+
+class Cachorro extends Animal {
+    @Override
+    void emitirSom() {
+        System.out.println("Latido");
+    }
+}  
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="metodo-privado">
+        <div class="title">Método Privado</div>
+        <pre>
+<code>
+- Só pode ser chamado dentro da própria classe.
+
+class Exemplo {
+    private void metodoInterno() {
+        System.out.println("Privado");
+    }
+}
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="metodo-default">
+        <div class="title">Método Default em Interfaces</div>
+        <pre>
+<code>
+- Introduzido no Java 8, permite que 
+interfaces forneçam implementações padrão 
+para métodos.
+- Um método default tem um corpo e 
+pode ser sobrescrito.
+
+interface Animal {
+  default void emitirSom() {
+      System.out.println("Som genérico");
+  }
+}
+
+class Cachorro implements Animal {
+  @Override
+  public void emitirSom() {
+      System.out.println("Latido");
+  }
+}  
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="metodo varargd">
+        <div class="title">Método Varargs</div>
+        <pre>
+<code>
+- Permite passar um número variável de 
+argumentos para o método.
+
+class Matematica {
+    void somar(int... numeros) {
+        int soma = 0;
+        for (int numero : numeros) {
+            soma += numero;
+        }
+        System.out.println("Soma: " + soma);
+    }
+}
+
+Matematica m = new Matematica();
+m.somar(1, 2, 3, 4);  // Soma: 10
+</code>
+        </pre>
+      </div>
+      <!-- 
+      <div class="block" data-tags="java-streams">
+        <div class="title">Streams</div>
+        <pre>
+<code>
+</code>
+        </pre>
+      </div>     
+      -->
     
   </main>
 
