@@ -3382,7 +3382,1430 @@ m.somar(1, 2, 3, 4);  // Soma: 10
 </code>
         </pre>
       </div>
+
+      <h2 class="section-title">📘 Generics</h2>
+
+      <div class="block" data-tags="classe-generica">
+        <div class="title">Classe Genérica</div>
+        <pre>
+<code>
+public class Caixa<T> {
+  private T valor;
+
+  public void guardar(T valor) {
+      this.valor = valor;
+  }
+
+  public T abrir() {
+      return valor;
+  }
+}
+
+<strong>Como usar:</strong>
+
+Caixa<String> caixaDeTexto = new Caixa<>();
+caixaDeTexto.guardar("Oi!");
+System.out.println(caixaDeTexto.abrir()); // Oi!
+
+Caixa<Integer> caixaDeNumero = new Caixa<>();
+caixaDeNumero.guardar(42);
+System.out.println(caixaDeNumero.abrir()); // 42
+  
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="metodo-generico">
+        <div class="title">Método Genérico</div>
+        <pre>
+<code>
+public class Util {
+  public static <T> void imprimir(T elemento) {
+      System.out.println(
+        "Elemento: " + elemento);
+  }
+}
+
+Util.imprimir("Java");
+Util.imprimir(123);
+Util.imprimir(3.14);
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="multiplos tipos">
+        <div class="title">Múltiplos Tipos</div>
+        <pre>
+<code>
+public class Par<A, B> {
+  private A primeiro;
+  private B segundo;
+
+  public Par(A primeiro, B segundo) {
+      this.primeiro = primeiro;
+      this.segundo = segundo;
+  }
+
+  public A getPrimeiro() {
+      return primeiro;
+  }
+
+  public B getSegundo() {
+      return segundo;
+  }
+}
+
+Par<String, Integer> nomeIdade = new Par<>("Maria", 30);
+System.out.println(nomeIdade.getPrimeiro()); // Maria
+System.out.println(nomeIdade.getSegundo());  // 30
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="tipo-desconhecido">
+        <div class="title">Tipos desconhecidos</div>
+        <pre>
+<code>
+public void imprimirLista(List<?> lista) {
+  for (Object item : lista) {
+      System.out.println(item);
+  }
+}
+</code>
+        </pre>
+      </div>
+
+      <h2 class="section-title">📘 Optional</h2>
+
+      <div class="block" data-tags="java-optional">
+        <div class="title">Optional</div>
+        <pre>
+<code>
+<strong>O que é Optional?</strong>
+
+Optional&lt;T&gt; é uma classe contêiner introduzida 
+no Java 8 para representar um valor que pode ou 
+não estar presente. Ela ajuda a evitar 
+NullPointerException e torna o código
+mais limpo e expressivo.
+
+<strong>Criando um Optional</strong>
+
+Optional&lt;String&gt; nome = Optional.of("João");
+Optional&lt;String&gt; vazio = Optional.empty();
+Optional&lt;String&gt; nomeSeguro = Optional.ofNullable(null);
+
+<strong>Verificando se há valor</strong>
+
+if (nome.isPresent()) {
+    System.out.println("Nome: " + nome.get());
+}
+
+<strong>Usando ifPresent</strong>
+
+nome.ifPresent(
+  valor -> System.out.println("Nome: " + valor));
+
+<strong>Usando orElse e orElseGet</strong>
+
+String resultado = nome.orElse("Valor padrão");
+String resultado2 = vazio.orElseGet(() -&gt; "Gerado dinamicamente");
+
+<strong>Lançando exceção se vazio</strong>
+
+String resultado3 = nome.orElseThrow(() -&gt; 
+    new RuntimeException("Nome ausente"));
+
+<strong>Transformando com map e flatMap</strong>
+
+Optional&lt;String&gt; nomeMaiusculo = nome.map(
+  String::toUpperCase);
+
+Optional&lt;String&gt; resultadoCorreto = 
+    nome.flatMap(n -&gt; Optional.of(n.toUpperCase()));
+
+<strong>Combinando com Stream</strong>
+
+Optional&lt;String&gt; encontrado = 
+    Stream.of("java", "spring", "hibernate")
+          .filter(p -&gt; p.startsWith("s"))
+          .findFirst();
+
+encontrado.ifPresent(System.out::println); // spring
+</code>
+        </pre>
+      </div>
+
+      <h2 class="section-title">📘 Record</h2>
+
+      <div class="block" data-tags="java-record">
+        <div class="title">Record</div>
+        <pre>
+<code>
+<strong>O que é um Record?</strong>
+
+Record é um tipo especial de classe introduzido no Java 14 
+(com suporte definitivo no Java 16) que serve para declarar 
+classes imutáveis de forma concisa, principalmente para 
+representar "data carriers" (portadores de dados).
+
+<strong>Principais características</strong>
+- Imutabilidade por padrão.
+- Geração automática de construtor, getters, equals, hashCode e toString.
+- Sintaxe simples e limpa.
+- Ideal para DTOs e objetos de valor.
+
+<strong>Exemplo de uso</strong>
+
+public record Pessoa(String nome, int idade) {}
+
+<strong>Instanciando um record</strong>
+
+Pessoa pessoa = new Pessoa("Maria", 30);
+System.out.println(pessoa.nome()); // Maria
+System.out.println(pessoa.idade()); // 30
+
+<strong>Comparando records</strong>
+
+Pessoa p1 = new Pessoa("João", 25);
+Pessoa p2 = new Pessoa("João", 25);
+System.out.println(p1.equals(p2)); // true
+
+<strong>Customizando o construtor</strong>
+
+public record Produto(String nome, double preco) {
+    public Produto {
+        if (preco &lt; 0) {
+            throw new IllegalArgumentException("Preço não pode ser negativo");
+        }
+    }
+}
+
+<strong>Vantagens</strong>
+- Redução de boilerplate.
+- Foco em dados e não em comportamento.
+- Segue os princípios de orientação a objetos modernos.
+
+<strong>Limitações</strong>
+- Não pode estender outras classes.
+- Não pode ser mutável.
+- Pode implementar interfaces, mas não herdar de outra classe.
+</code>
+        </pre>
+      </div>
+      
+      <h2 class="section-title">📘 Spring Boot</h2>
+
+      <div class="block wide" data-tags="spring-annotations">
+        <div class="title">Annotations</div>
+        <div class="code-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Anotação</th>
+                <th>Descrição</th>
+                <th>Quando usar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@RestController</td>
+                <td>Combina @Controller e @ResponseBody para APIs REST</td>
+                <td>Quando criar controladores que retornam JSON/XML</td>
+              </tr>
+              <tr>
+                <td>@RequestMapping</td>
+                <td>Mapeia requisições HTTP para métodos ou classes</td>
+                <td>Quando quiser configurar rotas com métodos HTTP específicos</td>
+              </tr>
+              <tr>
+                <td>@GetMapping / @PostMapping / @PutMapping / @DeleteMapping</td>
+                <td>Mapeiam métodos HTTP GET, POST, PUT e DELETE</td>
+                <td>Quando criar rotas REST de forma mais declarativa</td>
+              </tr>
+              <tr>
+                <td>@RequestParam</td>
+                <td>Obtém parâmetros da URL (query string)</td>
+                <td>Quando quiser capturar dados enviados na URL, como filtros ou paginação</td>
+              </tr>
+              <tr>
+                <td>@PathVariable</td>
+                <td>Obtém variáveis do caminho da URL</td>
+                <td>Quando capturar partes dinâmicas da rota, como /produtos/{id}</td>
+              </tr>
+              <tr>
+                <td>@RequestBody</td>
+                <td>Converte o corpo da requisição JSON em objeto Java</td>
+                <td>Quando receber dados estruturados via POST/PUT (como objetos)</td>
+              </tr>
+              <tr>
+                <td>@ResponseBody</td>
+                <td>Indica que o retorno deve ser convertido em JSON/XML</td>
+                <td>Quando quiser retornar dados em vez de renderizar views</td>
+              </tr>
+              <tr>
+                <td>@Autowired</td>
+                <td>Injeta dependências automaticamente</td>
+                <td>Quando precisar usar um bean gerenciado pelo Spring</td>
+              </tr>
+              <tr>
+                <td>@Component / @Service / @Repository</td>
+                <td>Define classes como beans gerenciados pelo Spring</td>
+                <td>Quando quiser que o Spring instancie e gerencie suas classes</td>
+              </tr>
+              <tr>
+                <td>@Configuration</td>
+                <td>Indica que a classe contém definições de beans</td>
+                <td>Quando configurar beans manualmente via Java</td>
+              </tr>
+              <tr>
+                <td>@Bean</td>
+                <td>Cria e registra manualmente um bean no contexto</td>
+                <td>Quando não puder usar @Component ou precisar de controle de instância</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>                    
+      
+      <h2 class="section-title">📘 Controller</h2>
+
+      <div class="block" data-tags="java-controller">
+        <div class="title">Controller</div>
+        <pre>
+<code>
+@RestController
+@RequestMapping("/produtos")
+public class ProdutoController {
+
+  // GET /produtos
+  @GetMapping
+  public List<Produto> listarProdutos() {
+    //implementação
+  }
+
+  // GET /produtos/{id}
+  @GetMapping("/{id}")
+  public Produto buscarPorId(@PathVariable int id) {
+    //implementação
+  }
+
+  // POST /produtos
+  @PostMapping
+  public Produto adicionarProduto(@RequestBody Produto produto) {
+    //implementação
+  }
+
+  // PUT /produtos/{id}
+  @PutMapping("/{id}")
+  public Produto atualizarProduto(@PathVariable int id, @RequestBody Produto atualizado) {
+    //implementação
+  }
+
+  // DELETE /produtos/{id}
+  @DeleteMapping("/{id}")
+  public void removerProduto(@PathVariable int id) {
+      //implementação
+  }
+}
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="spring-controller-annotations">
+        <div class="title">Anotações do Controller</div>
+        <pre>
+<code>
+<strong>@RestController</strong>
+Combina <code>@Controller</code> e <code>@ResponseBody</code>, indicando que a classe será um controller onde cada método retorna diretamente um objeto, e não uma view.
+
+<strong>Quando usar:</strong>
+Classes que manipulam requisições REST e retornam JSON ou XML.
+
+<strong>@RequestMapping</strong>
+Define a rota base para todos os métodos da classe ou um endpoint específico.
+
+<strong>Quando usar:</strong>
+Quando quiser definir a URL base de um grupo de endpoints ou configurar o método HTTP manualmente.
+
+<strong>@GetMapping</strong>
+Mapeia requisições HTTP GET para um método específico.
+
+<strong>Quando usar:</strong>
+Para recuperar dados.
+
+<strong>@PostMapping</strong>
+Mapeia requisições HTTP POST para um método.
+
+<strong>Quando usar:</strong>
+Para criação de novos recursos.
+
+<strong>@PutMapping</strong>
+Mapeia requisições HTTP PUT para um método.
+
+<strong>Quando usar:</strong>
+Para atualizar recursos existentes.
+
+<strong>@DeleteMapping</strong>
+Mapeia requisições HTTP DELETE para um método.
+
+<strong>Quando usar:</strong>
+Para excluir recursos.
+
+<strong>@PathVariable</strong>
+Extrai valores diretamente da URL e os injeta como argumentos do método.
+
+<strong>Quando usar:</strong>
+Quando parte da informação vem do caminho da URL (ex: /produtos/10).
+
+<strong>@RequestBody</strong>
+Converte o corpo da requisição (geralmente JSON) em um objeto Java.
+
+<strong>Quando usar:</strong>
+Quando precisa receber dados complexos via POST ou PUT no corpo da requisição.
+
+<strong>@RequestParam</strong>
+Extrai valores de parâmetros de consulta (query params) da URL.
+
+<strong>Quando usar:</strong>
+Quando os dados são passados como <code>?nome=valor</code> na URL.
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="spring-responseentity">
+        <div class="title">ResponseEntity</div>
+        <pre>
+<code>
+<strong>O que é o ResponseEntity?</strong>
+O <code>ResponseEntity</code> é uma classe do Spring usada para representar uma resposta HTTP completa. Ela permite configurar o corpo da resposta, os cabeçalhos HTTP e o status da resposta de maneira flexível.
+
+<strong>Principais características</strong>
+- Permite personalizar completamente a resposta HTTP, incluindo o status, cabeçalhos e corpo.
+- Usado frequentemente em controladores REST para retornar respostas com informações sobre o status da operação.
+- Ideal para cenários onde você precisa de controle total sobre a resposta.
+
+<strong>Exemplo de uso</strong>
+
+<code>
+@GetMapping("/produto/{id}")
+public ResponseEntity<Produto> getProduto(@PathVariable Long id) {
+    Produto produto = produtoService.findById(id);
+    if (produto != null) {
+        return ResponseEntity.ok(produto);  // 200 OK
+    } else {
+        return ResponseEntity.notFound().build();  // 404 Not Found
+    }
+}
+</code>
+
+<strong>Retornando diferentes códigos de status</strong>
+
+<code>
+public ResponseEntity<String> criarProduto(@RequestBody Produto produto) {
+    if (produto.getPreco() <= 0) {
+        return ResponseEntity.badRequest().body("Preço inválido");  // 400 Bad Request
+    }
+    produtoService.salvar(produto);
+    return ResponseEntity.status(HttpStatus.CREATED).body("Produto criado com sucesso");  // 201 Created
+}
+</code>
+
+<strong>Configurando cabeçalhos HTTP</strong>
+
+<code>
+public ResponseEntity<Produto> getProdutoComHeaders(@PathVariable Long id) {
+    Produto produto = produtoService.findById(id);
+    if (produto != null) {
+        return ResponseEntity.ok()
+            .header("X-Custom-Header", "ValorExemplo")
+            .body(produto);  // 200 OK com cabeçalho customizado
+    } else {
+        return ResponseEntity.notFound().build();  // 404 Not Found
+    }
+}
+</code>
+
+<strong>Vantagens</strong>
+- Total controle sobre a resposta HTTP.
+- Permite definir o código de status, cabeçalhos e corpo de maneira flexível.
+- Facilita o tratamento de diferentes cenários de resposta, como erros ou sucessos.
+
+<strong>Quando usar:</strong>
+- Quando você precisar de um controle mais detalhado sobre a resposta HTTP.
+- Em APIs RESTful para retornar respostas com status HTTP adequado.
+- Para incluir cabeçalhos HTTP customizados na resposta.
+</code>
+        </pre>
+      </div>
+      
+      <div class="block" data-tags="spring-valid">
+        <div class="title">@Valid</div>
+        <pre>
+<code>
+<strong>O que é o @Valid?</strong>
+A anotação <code>@Valid</code> é utilizada no Spring para indicar que a validação de um objeto deve ser executada automaticamente, com base nas anotações de validação presentes nas propriedades do objeto. Ela é comumente usada em métodos de controladores para validar dados recebidos em uma requisição HTTP antes de serem processados.
+
+<strong>Principais características</strong>
+- A anotação é usada em parâmetros de métodos ou campos para indicar que devem ser validados.
+- Funciona em conjunto com as anotações de validação, como <code>@NotNull</code>, <code>@Size</code>, <code>@Email</code>, entre outras.
+- O Spring realiza a validação de forma automática quando a anotação <code>@Valid</code> é aplicada.
+
+<strong>Exemplo de uso no Controller</strong>
+
+<code>
+@PostMapping("/usuario")
+public ResponseEntity<String> criarUsuario(@RequestBody @Valid Usuario usuario, BindingResult result) {
+    if (result.hasErrors()) {
+        return ResponseEntity.badRequest().body("Erro de validação");
+    }
+    usuarioService.salvar(usuario);
+    return ResponseEntity.status(HttpStatus.CREATED).body("Usuário criado com sucesso");
+}
+</code>
+
+<strong>Exemplo de um DTO com validações</strong>
+
+<code>
+public class Usuario {
+
+    @NotNull(message = "O nome é obrigatório")
+    @Size(min = 2, message = "O nome deve ter pelo menos 2 caracteres")
+    private String nome;
+
+    @Email(message = "O email deve ser válido")
+    @NotNull(message = "O email é obrigatório")
+    private String email;
+
+    @NotNull(message = "A idade é obrigatória")
+    @Min(value = 18, message = "A idade mínima é 18 anos")
+    private Integer idade;
+
+    // Getters e Setters
+}
+</code>
+
+<strong>Como funciona:</strong>
+1. Quando um método de controlador recebe um objeto anotado com <code>@Valid</code>, o Spring automaticamente valida esse objeto antes de continuar com a execução do método.
+2. Se houver erros de validação, eles podem ser capturados através do parâmetro <code>BindingResult</code> para tratamento personalizado.
+
+<strong>Vantagens</strong>
+- Facilita a validação de dados de entrada com anotações de validação.
+- Validação automática sem a necessidade de escrever código adicional para verificar cada campo manualmente.
+- Integra-se facilmente ao Spring MVC e Spring Boot, tornando a validação de objetos no controlador mais simples.
+
+<strong>Quando usar:</strong>
+- Quando você precisa validar dados de entrada de uma requisição HTTP (por exemplo, parâmetros de um <code>POST</code> ou <code>PUT</code>).
+- Quando estiver utilizando objetos como DTOs (Data Transfer Objects) que contêm dados a serem validados antes de serem processados ou persistidos.
+- Para garantir que os dados estejam no formato correto, evitando erros antes da execução da lógica do negócio.
+
+<strong>Exemplo de erro de validação:</strong>
+Se um usuário enviar dados inválidos, como um nome com menos de 2 caracteres ou um e-mail inválido, o Spring retornará uma resposta com erro 400 (Bad Request), indicando o motivo da falha na validação.
+</code>
+        </pre>
+      </div>
+      <div class="block" data-tags="exception-handler">
+        <div class="title">Exception Handler</div>
+        <pre>
+<code>
+<strong>Controller</strong>
+Controller criado para receber as requisições
+@Valid em cima do @RequestBody => isso ativa a validação automática!
+Se a requisição vier inválida, vai estourar uma exceção chamada 
+MethodArgumentNotValidException
+
+@PostMapping
+public String createUser(@RequestBody @Valid UserRequest request) {
+    return "User created successfully: " + request.getName();
+}
+
+<strong>UserRequest</strong>
+Classe criada para fazer a validação automatica do request
+public class UserRequest {
+  @NotBlank(message = "Name is mandatory")
+  private String name;
+}
+
+<strong>ApiException</strong>
+public class ApiException extends RuntimeException {
+
+  public ApiException(String message) {
+      super(message);
+  }
+
+  public ApiException(String message, Throwable cause) {
+      super(message, cause);
+  }
+}
+
+<strong>ResourceNotFoundException</strong>
+Se quiser mais exceções específicas, é só ir criando herdando de ApiException
+public class ResourceNotFoundException extends ApiException {
+
+  public ResourceNotFoundException(String message) {
+      super(message);
+  }
+}
+
+<strong>ErrorResponse</strong>
+Classe Criada para padronizar o retorno do erro
+import java.time.LocalDateTime;
+
+public class ErrorResponse {
+
+  private LocalDateTime timestamp;
+  private int status;
+  private String error;
+  private String message;
+  private String path;
+
+  public ErrorResponse(LocalDateTime timestamp, int status, String error, String message, String path) {
+    this.timestamp = timestamp;
+    this.status = status;
+    this.error = error;
+    this.message = message;
+    this.path = path;
+  }
+
+  public LocalDateTime getTimestamp() {
+    return timestamp;
+  }
+
+  public int getStatus() {
+    return status;
+  }
+
+  public String getError() {
+    return error;
+  }
+
+  public String getMessage() {
+    return message;
+  }
+
+  public String getPath() {
+    return path;
+  }
+}
+</code>
+        </pre>
+      </div>
+      
+      <div class="block" data-tags="exception-handler">
+        <div class="title">Exception Handler parte2</div>
+        <pre>
+<code>
+import java.time.LocalDateTime;
+import java.util.stream.Collectors;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+  @ExceptionHandler(ApiException.class)
+  public ResponseEntity<ErrorResponse> handleApiException(ApiException ex, HttpServletRequest request) {
+      ErrorResponse error = new ErrorResponse(
+              LocalDateTime.now(),
+              HttpStatus.BAD_REQUEST.value(),
+              HttpStatus.BAD_REQUEST.getReasonPhrase(),
+              ex.getMessage(),
+              request.getRequestURI()
+      );
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+  }
+
+  @ExceptionHandler(MethodArgumentNotValidException.class)
+  public ResponseEntity<ErrorResponse> handleValidationException(MethodArgumentNotValidException ex, HttpServletRequest request) {
+      String errors = ex.getBindingResult()
+                        .getFieldErrors()
+                        .stream()
+                        .map(fieldError -> fieldError.getField() + ": " + fieldError.getDefaultMessage())
+                        .collect(Collectors.joining("; "));
+
+      ErrorResponse error = new ErrorResponse(
+              LocalDateTime.now(),
+              HttpStatus.BAD_REQUEST.value(),
+              HttpStatus.BAD_REQUEST.getReasonPhrase(),
+              errors,
+              request.getRequestURI()
+      );
+
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+  }
+
+  @ExceptionHandler(Exception.class)
+  public ResponseEntity<ErrorResponse> handleGenericException(Exception ex, HttpServletRequest request) {
+      ErrorResponse error = new ErrorResponse(
+              LocalDateTime.now(),
+              HttpStatus.INTERNAL_SERVER_ERROR.value(),
+              HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
+              ex.getMessage(),
+              request.getRequestURI()
+      );
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+  }
+}  
+</code>
+        </pre>
+      </div>
+      
+      <h2 class="section-title">📘 Chamadas para Outras APIs</h2>
+
+      <div class="block" data-tags="rest-template">
+        <div class="title">Rest-template</div>
+        <pre>
+<code>
+<strong>GET Request</strong>
+- getForObject(String url, Class<T> responseType)
+
+Faz uma requisição GET para o URL fornecido 
+e retorna a resposta como um objeto do tipo 
+especificado.
+
+String result = restTemplate.getForObject(
+  "http://api.exemplo.com/endpoint", 
+  String.class);
+
+- getForObject(
+  String url, Object[] uriVariables, 
+Class<T> responseType)
+
+Faz uma requisição GET para o URL com 
+variáveis de URI, substituindo os 
+parâmetros na URL.
+
+String result = restTemplate.getForObject(
+  "http://api.exemplo.com/endpoint/{id}", 
+  String.class, 123);
+
+- getForEntity(String url, Class<T> responseType)
+  
+Faz uma requisição GET para o URL e retorna a 
+resposta como um ResponseEntity, que inclui o 
+corpo da resposta e os cabeçalhos HTTP.  
+
+ResponseEntity<String> response = restTemplate
+  .getForEntity(
+    "http://api.exemplo.com/endpoint", 
+  String.class);
+
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="rest-template">
+        <div class="title">Rest-template</div>
+        <pre>
+<code>
+<strong>POST Request</strong>  
+- postForObject(String url, Object request, 
+Class<T> responseType)
+
+Faz uma requisição POST para o URL fornecido, 
+envia o objeto request como o corpo da 
+requisição e retorna a resposta como um 
+objeto do tipo especificado.  
+
+MyRequest request = new MyRequest();
+MyResponse response = restTemplate
+.postForObject(
+  "http://api.exemplo.com/endpoint", 
+  request, 
+  MyResponse.class);
+
+
+- postForEntity(String url, Object request, 
+Class<T> responseType)
+
+Faz uma requisição POST e retorna a resposta 
+como um ResponseEntity.  
+
+MyRequest request = new MyRequest();
+ResponseEntity<MyResponse> response = restTemplate
+  .postForEntity(
+    "http://api.exemplo.com/endpoint", 
+  request, MyResponse.class);
+
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="rest-template">
+        <div class="title">Rest-template</div>
+        <pre>
+<code>
+<strong>PUT Request</strong>
+
+- put(String url, Object request)
+
+Faz uma requisição PUT para o URL fornecido 
+com o objeto request como o corpo 
+da requisição. Não retorna valor.
+
+MyRequest request = new MyRequest();
+restTemplate.put(
+  "http://api.exemplo.com/endpoint", request);
+
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="rest-template">
+        <div class="title">Rest-template</div>
+        <pre>
+<code>
+<strong>DELETE Request</strong>
+
+- delete(String url)
+
+Faz uma requisição DELETE para o URL 
+fornecido. Não retorna valor.
+
+restTemplate.delete(
+  "http://api.exemplo.com/endpoint/{id}",
+   123);
+
+- delete(String url, Object... uriVariables)
+
+Faz uma requisição DELETE, substituindo os 
+parâmetros da URL com os valores fornecidos.
+
+restTemplate.delete(
+  "http://api.exemplo.com/endpoint/{id}", 
+  123);
+
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="rest-template">
+        <div class="title">Rest-template</div>
+        <pre>
+<code>
+<strong>Exchange Request</strong>
+
+- exchange(
+  String url, 
+  HttpMethod method, 
+  HttpEntity<?> requestEntity, 
+  Class<T> responseType)
+
+Executa uma requisição HTTP com o método 
+especificado (GET, POST, PUT, DELETE, etc.), 
+e retorna um ResponseEntity com o corpo e 
+os cabeçalhos da resposta.
+
+HttpHeaders headers = new HttpHeaders();
+headers.set("Authorization", "Bearer token");
+HttpEntity<String> entity = new HttpEntity<>(headers);
+
+ResponseEntity<String> response = restTemplate.exchange(
+    "http://api.exemplo.com/endpoint",
+    HttpMethod.GET,
+    entity,
+    String.class
+);
+
+url: A URL do endpoint.
+method: O método HTTP (GET, POST, PUT, DELETE, etc.).
+requestEntity: O corpo e os cabeçalhos da requisição.
+responseType: O tipo de resposta esperada.
+
+RestTemplate é bloqueante: Mesmo com essas opções, 
+o RestTemplate continua sendo um cliente bloqueante. 
+Isso significa que a execução do código será 
+interrompida até que a resposta da requisição 
+seja recebida.
+</code>
+        </pre>
+      </div>
+  
+      <h2 class="section-title">📘 @Async</h2>
+      
+      <div class="block" data-tags="async">
+        <div class="title">Async</div>
+        <pre>
+<code>
+  - Você precisa colocar a anotação @EnableAsync 
+  em uma classe de configuração 
+  (geralmente a @SpringBootApplication já serve):
+
+@SpringBootApplication
+@EnableAsync
+public class SeuProjetoApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(SeuProjetoApplication.class, args);
+    }
+}
+
+Anotar o método que será assíncrono com @Async
+
+@Service
+public class EmailService {
+
+  @Async
+  public void enviarEmail(String destinatario) {
+      // Simulando tempo de envio
+      System.out.println("Enviando e-mail para " + destinatario);
+  }
+}  
+</code>
+        </pre>
+      </div>
+
+      <h2 class="section-title">📘 Spring Data </h2>
+       
+      <div class="block" data-tags="spring-data-mysql">
+        <div class="title">Spring data mysql configuração</div>
+        <pre>
+<code>
+<strong>1 - Adicionar dependencias</strong>
+  
+spring-boot-starter-data-jpa
+mysql-connector-java
+
+<strong>2 - Configurar application properties</strong>
+
+spring.datasource.url=jdbc:mysql://localhost:3306/seu_banco_de_dados?useSSL=false&serverTimezone=UTC
+spring.datasource.username=seu_usuario
+spring.datasource.password=sua_senha
+
+#para o Hibernate criar/atualizar as tabelas automaticamente
+spring.jpa.hibernate.ddl-auto=update
+#mostra as queries no console
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+
+</code>
+        </pre>
+      </div>
+      
+       
+      <div class="block" data-tags="spring-data-mysql">
+        <div class="title">Spring data mysql entidade</div>
+        <pre>
+<code>
+<strong>Entidade simples</strong>  
+@Entity
+@Table(name = "pessoas")
+public class Pessoa {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  @Column(nullable = false, length = 100)
+  private String nome;
+
+  @Column(nullable = false, length = 100, unique = true)
+  private String email
+}      
+</code>
+        </pre>
+      </div>
+      
+      <div class="block" data-tags="spring-data-mysql">
+        <div class="title">Spring data mysql entidade com chave primaria composta</div>
+        <pre>
+<code>
+<strong>Entidade com chave primaria composta</strong>  
+
+1. Crie a classe da chave composta
+
+Essa classe não é uma entidade, ela apenas define a chave.
+Ela precisa:
+- Ser anotada com @Embeddable
+- Implementar Serializable
+- Ter equals e hashCode
+
+@Embeddable
+public class PessoaId implements Serializable {
+
+  private String cpf;
+  private String rg;
+
+  @Override
+    public boolean equals(Object o) {
+        //implementacao
+    }
+
+    @Override
+    public int hashCode() {
+      //implementacao
+    }
+}
+
+2. Crie a entidade usando @EmbeddedId
+
+@Entity
+@Table(name = "pessoas")
+public class Pessoa {
+
+  @EmbeddedId
+  private PessoaId id;
+
+  @Column(nullable = false)
+  private String nome;
+
+  @Column(length = 100)
+  private String email;
+}
+</code>
+        </pre>
+      </div>
+      
+      <div class="block" data-tags="spring-data-mysql">
+        <div class="title">Spring data mysql One To Many</div>
+        <pre>
+<code>
+<strong>One To Many</strong>  
+
+Exemplo: Pessoa → Telefones
+Uma Pessoa pode ter vários Telefones.
+Pessoa = 1 (um lado)
+Telefone = N (muitos lados)
+
+@Entity
+@Table(name = "pessoas")
+public class Pessoa {
+
+  //cascade = CascadeType.ALL - Se salvar ou deletar Pessoa, automaticamente salva ou deleta seus Telefones.
+  //orphanRemoval = true - Se remover um Telefone da lista de Pessoa, ele também será deletado do banco.
+  @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Telefone> telefones = new ArrayList<>();
+
+  // método utilitário para adicionar telefone
+  public void adicionarTelefone(Telefone telefone) {
+      telefone.setPessoa(this); // seta a relação dos dois lados
+      telefones.add(telefone);
+  }  
+}
+
+@Entity
+@Table(name = "telefones")
+public class Telefone {
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "pessoa_id")
+  private Pessoa pessoa;
+}
+
+<strong>Como salvar uma Pessoa com vários Telefones</strong>
+
+Pessoa pessoa = new Pessoa("Maria Oliveira");
+pessoa.adicionarTelefone(new Telefone("1199999-9999"));
+pessoa.adicionarTelefone(new Telefone("1188888-8888"));
+pessoaRepository.save(pessoa);
+
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="spring-data-mysql">
+        <div class="title">Spring data mysql Many To One</div>
+        <pre>
+<code>
+<strong>Many To One</strong>
+
+Exemplo: Telefone → Pessoa
+Cada Telefone está ligado a uma Pessoa (muitos telefones para uma pessoa).
+
+@Entity
+@Table(name = "telefones")
+public class Telefone {
+  //fetch = LAZY -> O JPA só carrega a Pessoa quando você chamar telefone.getPessoa()
+  //@ManyToOne vai no lado que tem muitos registros
+  @ManyToOne(fetch = FetchType.LAZY)
+  //Define a FK (pessoa_id) e exige que ela seja obrigatória.
+  @JoinColumn(name = "pessoa_id", nullable = false)
+  private Pessoa pessoa;  
+}
+
+@Entity
+@Table(name = "pessoas")
+public class Pessoa {
+  //Se você quiser, pode deixar a Pessoa sem a lista de Telefones também.
+}
+
+<strong>Como salvar um telefone novo para uma pessoa já existente:</strong>
+
+Pessoa pessoaExistente = pessoaRepository.findById(1L).orElseThrow();
+Telefone telefone = new Telefone("1199999-9999", pessoaExistente);
+telefoneRepository.save(telefone);
+</code>
+        </pre>
+      </div>  
+
+      <div class="block" data-tags="spring-data-mysql">
+        <div class="title">Spring data mysql One To One</div>
+        <pre>
+<code>
+<strong>One To One</strong>
+
+Pessoa ↔ Documento
+Cada Pessoa tem um Documento.
+Cada Documento pertence a uma Pessoa.
+
+@Entity
+@Table(name = "pessoas")
+public class Pessoa {
+  //mappedBy sempre indica que a FK (pessoa_id) está no lado da outra entidade (Documento nesse caso).
+  @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+  private Documento documento;
+}
+
+@Entity
+@Table(name = "documentos")
+public class Documento {
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "pessoa_id", nullable = false, unique = true)
+  private Pessoa pessoa;
+}
+
+<strong>Como salvar um Pessoa com Documento</strong>
+
+Pessoa pessoa = new Pessoa("João Silva");
+Documento documento = new Documento("123456789");
+pessoa.setDocumento(documento);
+pessoaRepository.save(pessoa);
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="spring-data-mysql">
+        <div class="title">Spring data mysql Many To Many</div>
+        <pre>
+<code>
+<strong>Many To Many</strong>
+
+Aluno <-> Curso
+Um Aluno pode fazer vários Cursos.
+Um Curso pode ter vários Alunos.
+
+@Entity
+@Table(name = "alunos")
+public class Aluno {
+  @ManyToMany
+    //Cria a tabela de junção no banco (alunos_cursos).
+    @JoinTable(
+        name = "alunos_cursos",
+        //Qual coluna da tabela de junção faz referência ao Aluno.
+        joinColumns = @JoinColumn(name = "aluno_id"),
+        //Qual coluna da tabela de junção faz referência ao Curso.
+        inverseJoinColumns = @JoinColumn(name = "curso_id")
+    )
+    private Set<Curso> cursos = new HashSet<>();
+}
+
+@Entity
+@Table(name = "cursos")
+public class Curso {
+  //Diz que o lado Curso é o lado "espelho" do relacionamento.
+  @ManyToMany(mappedBy = "cursos")
+  private Set<Aluno> alunos = new HashSet<>();
+}
+
+//Como salvar um aluno com cursos:
+
+Curso curso1 = new Curso("Matemática");
+Curso curso2 = new Curso("História");
+
+cursoRepository.save(curso1);
+cursoRepository.save(curso2);
+
+Aluno aluno = new Aluno("Maria");
+aluno.getCursos().add(curso1);
+aluno.getCursos().add(curso2);
+
+alunoRepository.save(aluno);
+
+</code>
+        </pre>
+      </div>
+      
+      <div class="block" data-tags="java-streams">
+        <div class="title">Tipos de consultas JPA</div>
+        <pre>
+<code>
+<strong>1.1 Consultas com Métodos Derivados</strong>
+
+O Spring Data JPA permite que você escreva consultas apenas definindo o nome do método no repositório.
+
+public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
+  // Consultas por nome
+  List<Pessoa> findByNome(String nome);
+
+  // Consultas com filtros mais complexos
+  List<Pessoa> findByIdadeGreaterThanEqual(int idade);
+}
+
+<strong>1.2 Consultas Customizadas com @Query</strong>
+
+public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
+
+@Query("SELECT p FROM Pessoa p WHERE p.nome = :nome")
+List<Pessoa> findPessoasByNome(@Param("nome") String nome);
+
+@Query("SELECT p FROM Pessoa p WHERE p.idade > :idade")
+List<Pessoa> findPessoasByIdadeMaiorQue(@Param("idade") int idade);
+}
+
+<strong>2. Criteria API com Spring Data JPA</strong>
+
+@Repository
+public class PessoaRepositoryCustomImpl implements PessoaRepositoryCustom {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Override
+    public List<Pessoa> buscarPorNome(String nome) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Pessoa> cq = cb.createQuery(Pessoa.class);
+        Root<Pessoa> root = cq.from(Pessoa.class);
+        Predicate nomePredicate = cb.equal(root.get("nome"), nome);
+        cq.where(nomePredicate);
+        return entityManager.createQuery(cq).getResultList();
+    }
+}
+
+Neste caso, a interface PessoaRepositoryCustom seria definida como:
+
+public interface PessoaRepositoryCustom {
+  List<Pessoa> buscarPorNome(String nome);
+}
+
+E a interface principal PessoaRepository ficaria assim:
+
+public interface PessoaRepository extends JpaRepository<Pessoa, Long>, PessoaRepositoryCustom {
+}
+
+3. Named Queries com Spring Data JPA
+
+Você pode usar Named Queries no Spring Data JPA, tanto na entidade quanto nos repositórios. 
+
+@Entity
+@NamedQuery(name = "Pessoa.findByNome", query = "SELECT p FROM Pessoa p WHERE p.nome = :nome")
+public class Pessoa {
+    // Campos e métodos
+}
+
+No repositório, você usaria a consulta nomeada assim:
+
+public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
+
+  @Query(name = "Pessoa.findByNome")
+  List<Pessoa> findByNome(@Param("nome") String nome);
+}
+
+Ou, caso você queira usar uma consulta nomeada sem o uso de @Query no repositório, pode invocar diretamente o método createNamedQuery na classe EntityManager.
+
+4. Consultas Nativas SQL com Spring Data JPA
+
+Você pode usar consultas SQL nativas no Spring Data JPA com a anotação @Query e definindo a propriedade nativeQuery = true.
+
+public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
+
+  @Query(value = "SELECT * FROM pessoas WHERE nome = :nome", nativeQuery = true)
+  List<Pessoa> findPessoasByNome(@Param("nome") String nome);
+}
+
+Se você quiser mapear o resultado de uma consulta SQL para um tipo diferente da entidade (um DTO, por exemplo), também pode fazer isso:
+
+public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
+
+  @Query(value = "SELECT p.id, p.nome FROM pessoas p WHERE p.nome = :nome", nativeQuery = true)
+  List<Object[]> findPessoasIdENome(@Param("nome") String nome);
+}
+
+E, em seguida, processa os resultados da consulta nativa:
+
+List<Object[]> resultado = pessoaRepository.findPessoasIdENome("João Silva");
+for (Object[] obj : resultado) {
+    Long id = (Long) obj[0];
+    String nome = (String) obj[1];
+    System.out.println("ID: " + id + ", Nome: " + nome);
+}
+
+5. Paginação com Spring Data JPA
+
+O Spring Data JPA oferece suporte à paginação de resultados por meio da interface PagingAndSortingRepository, que herda de JpaRepository.
+
+public interface PessoaRepository extends PagingAndSortingRepository<Pessoa, Long> {
+
+  Page<Pessoa> findByNome(String nome, Pageable pageable);
+}
+
+Ao chamar esse método, você pode passar um objeto Pageable (como o PageRequest) para controlar a página e o número de resultados por página.
+
+Pageable pageable = PageRequest.of(0, 10);  // Primeira página com 10 resultados
+Page<Pessoa> pessoasPage = pessoaRepository.findByNome("João Silva", pageable);
+
+pessoasPage.getContent().forEach(p -> System.out.println(p.getNome()));
+
+A classe Page tem métodos úteis, como getTotalElements() (para saber o total de registros) e getTotalPages() (para saber o total de páginas).
+
+6. Named Entity Graphs
+
+O Named Entity Graph é uma forma de definir quais associações de entidades devem ser carregadas em uma consulta. É útil para evitar o carregamento excessivo de dados e resolver problemas de N+1 queries.
+
+Você pode usar a anotação @EntityGraph para definir as associações a serem carregadas.
+
+@Entity
+@NamedEntityGraph(name = "Pessoa.detalhada", 
+                  attributeNodes = @NamedAttributeNode("endereco"))
+public class Pessoa {
+    @OneToOne
+    private Endereco endereco;
+    // Outros atributos e métodos
+}
+
+public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
+
+  @EntityGraph(value = "Pessoa.detalhada", type = EntityGraph.EntityGraphType.FETCH)
+  List<Pessoa> findByNome(String nome);
+}
+
+Com isso, a consulta findByNome também carrega o endereco de forma eficiente, sem precisar de uma consulta adicional.
+
+</code>
+        </pre>
+      </div>
+
+      <h2 class="section-title">📘 Spring Data MongoDb</h2>
+      
+      <div class="block" data-tags="spring-data-mongo">
+        <div class="title">Spring Data Mongo DB - configuracao</div>
+        <pre>
+<code>
+<strong>Adicionar Dependência</strong>  
+  
+spring-boot-starter-data-mongodb
+
+<strong>Configurar a Conexão com o MongoDB</strong>
+Assim
+spring.data.mongodb.uri=mongodb://localhost:27017/minha_base
+Ou 
+spring.data.mongodb.host=localhost
+spring.data.mongodb.port=27017
+spring.data.mongodb.database=minha_base
+spring.data.mongodb.username=usuario
+spring.data.mongodb.password=senha
+</code>
+        </pre>
+      </div>
+
+      <div class="block" data-tags="spring-data-mongo">
+        <div class="title">Spring Data Mongo DB</div>
+        <pre>
+<code>
+<strong>Criar o Modelo (Entidade)</strong>  
+
+@Document(collection = "pessoas")
+public class Pessoa {
+
+    @Id
+    private String id;
+    private String nome;
+    private int idade;
+
+    // Construtores, getters e setters
+}
+
+<strong>Consulta</strong>
+
+public interface PessoaRepository extends MongoRepository<Pessoa, String> {
+
+    // Método para buscar pessoas pelo nome
+    List<Pessoa> findByNome(String nome);
+
+    // Método para buscar pessoas com idade maior que o valor fornecido
+    List<Pessoa> findByIdadeGreaterThan(int idade);
+}
+
+<strong>Alteração</strong>
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class PessoaService {
+
+    @Autowired
+    private PessoaRepository pessoaRepository;
+
+    // Atualiza os dados de uma pessoa
+    public Pessoa atualizarPessoa(String id, Pessoa novaPessoa) {
+        Pessoa pessoaExistente = pessoaRepository.findById(id).orElse(null);
+        
+        if (pessoaExistente != null) {
+            pessoaExistente.setNome(novaPessoa.getNome());
+            pessoaExistente.setIdade(novaPessoa.getIdade());
+            return pessoaRepository.save(pessoaExistente);  // Atualiza a pessoa
+        } else {
+            return null;  // Caso não encontre a pessoa com o ID fornecido
+        }
+    }
+}
+
+<strong>Exclusão</strong>
+
+@Service
+public class PessoaService {
+
+    @Autowired
+    private PessoaRepository pessoaRepository;
+
+    // Excluir pessoa por ID
+    public void excluirPessoa(String id) {
+        pessoaRepository.deleteById(id);  // Exclui pelo ID
+    }
+}
+
+Exemplo de exclusão de pessoa por nome:
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class PessoaService {
+
+    @Autowired
+    private PessoaRepository pessoaRepository;
+
+    // Excluir pessoa por nome
+    public void excluirPorNome(String nome) {
+        List<Pessoa> pessoas = pessoaRepository.findByNome(nome);
+        for (Pessoa pessoa : pessoas) {
+            pessoaRepository.delete(pessoa);  // Exclui todas as pessoas com o nome especificado
+        }
+    }
+}
+
+<strong>Salvar</strong>
+
+@Service
+public class PessoaService {
+
+    @Autowired
+    private PessoaRepository pessoaRepository;
+
+    // Criar nova pessoa
+    public Pessoa criarPessoa(Pessoa pessoa) {
+        return pessoaRepository.save(pessoa);  // Salva a pessoa no banco de dados
+    }
+}
+
+</code>
+        </pre>
+      </div>
+
+
       <!-- 
+        spring cached
+        spring retry
+        spring kafka
+        spring web client
+        
       <div class="block" data-tags="java-streams">
         <div class="title">Streams</div>
         <pre>
@@ -3391,7 +4814,6 @@ m.somar(1, 2, 3, 4);  // Soma: 10
         </pre>
       </div>     
       -->
-    
   </main>
 
   <script src="scripts.js"></script>
